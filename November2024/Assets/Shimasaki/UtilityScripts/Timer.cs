@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// タイマークラス
@@ -18,14 +20,20 @@ public class Timer
     private float limitTime = 0.0f;
 
     /// <summary>
+    /// 実行するメソッド
+    /// </summary>
+    private UnityAction action;
+
+    /// <summary>
     /// タイマーの時間を設定
     /// </summary>
     /// <param name="setTime">設定秒数</param>
-    /// <param name="isOverWrite">true = 上書き開始</param>
-    public void SetTimer(float setTime ,bool isOverWrite = false)
+    /// <param name="setAction">設定メソッド</param>
+    /// <param name="isOverWrite">上書きするか</param>
+    public void SetTimer(float setTime, UnityAction setAction, bool isOverWrite = false)
     {
         // 上書きが可能な場合
-        if(isOverWrite == true)
+        if (isOverWrite == true)
         {
             ResetTimer();
         }
@@ -39,7 +47,11 @@ public class Timer
         // マイナス秒数の場合リターン
         if (setTime < 0.0f) return;
 
+        // タイマー時間を設定
         limitTime = setTime;
+
+        // メソッドを設定
+        action = setAction;
     }
 
     /// <summary>
@@ -49,35 +61,37 @@ public class Timer
     {
         time = 0.0f;
         limitTime = 0.0f;
+
+        action = null;
     }
 
     /// <summary>
     /// 時間計算
     /// </summary>
-    public void Calculation(float calDeltaTime)
+    public void Count(float calDeltaTime)
     {
         if (!isTimerStart()) return;
 
         time += calDeltaTime;
+
+        JudgeTimeLimit();
     }
 
     /// <summary>
-    /// 設定時間が終了したか
+    /// 設定時間が終了したらメソッドを実行
     /// </summary>
-    /// <returns>true = 終了</returns>
-    public bool isTimeLimit()
+    public void JudgeTimeLimit()
     {
-        if (!isTimerStart()) return false;
-
-        // 設定時間が終了したらtrueを返しリセット
+        // 設定時間が終了したら実行しリセット
         if (time >= limitTime)
         {
+            if (action != null)
+            {
+                action.Invoke();
+            }
+
             ResetTimer();
-
-            return true;
         }
-
-        return false;
     }
 
     /// <summary>
