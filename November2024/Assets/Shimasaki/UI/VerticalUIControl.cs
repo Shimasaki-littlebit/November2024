@@ -7,11 +7,15 @@ using UnityEngine;
 /// </summary>
 public class VerticalUIControl : MonoBehaviour
 {
+    /// <summary>
+    /// 選択時のボタン配列
+    /// </summary>
     [SerializeField]
-    [Tooltip("選択されている時のボタン配列")]
     private GameObject[] targetButtons;
 
-    [Tooltip("選んでいるボタンの番号")]
+    /// <summary>
+    /// 選択ボタン番号
+    /// </summary>
     private int selectNum = 0;
 
     /// <summary>
@@ -22,13 +26,19 @@ public class VerticalUIControl : MonoBehaviour
         get => selectNum;
     }
 
-    [Tooltip("入力を止めるフラグ")]
+    /// <summary>
+    /// 入力停止フラグ
+    /// </summary>
     private bool isStopInput = false;
 
-    [Tooltip("入力を止める時間")]
+    /// <summary>
+    /// 入力停止時間
+    /// </summary>
     private float stopInputTime = 0.2f;
 
-    [Tooltip("時間計算用")]
+    /// <summary>
+    /// 入力停止計算用
+    /// </summary>
     private float calTime = 0.0f;
 
     // Start is called before the first frame update
@@ -60,12 +70,17 @@ public class VerticalUIControl : MonoBehaviour
         // 入力停止中なら返す
         if (isStopInput) return;
 
-        // 左スティック縦入力を検知
-        var vertical = Input.GetAxisRaw("Vertical");
+        float vertical = 0.0f;
 
-        // 下入力があればボタン番号を増やす
-        if (vertical > 0.0f)
+        // 左スティック縦入力を検知
+        vertical = Input.GetAxisRaw("Vertical");
+
+        // 下入力orキーボードS入力があればボタン番号を増やす
+        if (vertical > 0.0f || Input.GetKey(KeyCode.S))
         {
+            // 入力停止フラグを建てる
+            isStopInput = true;
+
             // 下限なら返す
             if (selectNum <= 0) return;
 
@@ -73,11 +88,13 @@ public class VerticalUIControl : MonoBehaviour
 
             // 画像更新
             DisplayImage();
-
         }
-        // 上入力があればボタン番号を増やす
-        else if (vertical < 0.0f)
+        // 上入力orキーボードW入力があればボタン番号を増やす
+        else if (vertical < 0.0f || Input.GetKey(KeyCode.W))
         {
+            // 入力停止フラグを建てる
+            isStopInput = true;
+
             // 上限なら返す
             if (selectNum >= targetButtons.Length - 1) return;
 
@@ -109,9 +126,6 @@ public class VerticalUIControl : MonoBehaviour
 
             ++buttonNum;
         }
-
-        // 入力停止フラグを建てる
-        isStopInput = true;
     }
 
     /// <summary>
