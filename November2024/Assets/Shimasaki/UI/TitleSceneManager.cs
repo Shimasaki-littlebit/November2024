@@ -22,8 +22,8 @@ public class TitleSceneManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // Aボタン入力でシーン読み込み
-        if (Input.GetKeyDown("joystick button 0"))
+        // AボタンorEnterキー入力でシーン読み込み
+        if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Return))
         {
             LoadScene();
         }

@@ -53,6 +53,12 @@ public class PlayerHorizontalMove : MonoBehaviour
     private void HorizontalInput()
     {
         horizontalValue = Input.GetAxisRaw("Horizontal");
+
+        // もしキーボード入力があれば反映
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            horizontalValue = KeyInput();
+        }
     }
 
     /// <summary>
@@ -175,5 +181,28 @@ public class PlayerHorizontalMove : MonoBehaviour
         pos.x = Mathf.Round(pos.x);
 
         return pos;
+    }
+
+    /// <summary>
+    /// キー入力の数値
+    /// </summary>
+    /// <returns>左右の入力値</returns>
+    private float KeyInput()
+    {
+        float result = 0.0f;
+
+        // A入力で左入力
+        if(Input.GetKey(KeyCode.A))
+        {
+            result -= 1.0f;
+        }
+
+        // D入力で右入力
+        if(Input.GetKey(KeyCode.D))
+        {
+            result += 1.0f;
+        }
+
+        return result;
     }
 }
