@@ -8,6 +8,31 @@ using UnityEngine;
 public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
 {
     /// <summary>
+    /// 重さ列挙型
+    /// </summary>
+    public enum Weight
+    {
+        STOP,
+        NORMAL,
+        HEAVY,
+        LIGHT,
+    }
+
+    /// <summary>
+    /// プレイヤーの重さ
+    /// </summary>
+    private Weight weight;
+
+    /// <summary>
+    /// 重さ取得
+    /// </summary>
+    public Weight GetWeight
+    {
+        get=> weight;
+        set=> weight = value;
+    }
+
+    /// <summary>
     /// 体力
     /// </summary>
     [SerializeField]
@@ -88,5 +113,8 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         // 両壁に当たっていない状態で初期化
         isRightWall = false;
         isLeftWall = false;
+
+        // 通常速度で初期化
+        weight = Weight.NORMAL;
     }
 }
