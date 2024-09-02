@@ -87,7 +87,7 @@ public class Timer
         {
             if (action != null)
             {
-                action.Invoke();
+                action();
             }
 
             ResetTimer();
