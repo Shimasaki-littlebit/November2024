@@ -12,10 +12,9 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     /// </summary>
     public enum Weight
     {
-        STOP,
+        LIGHT,
         NORMAL,
         HEAVY,
-        LIGHT,
     }
 
     /// <summary>
@@ -28,8 +27,21 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     /// </summary>
     public Weight GetWeight
     {
-        get=> weight;
-        set=> weight = value;
+        get => weight;
+        set => weight = value;
+    }
+
+    /// <summary>
+    /// プレイヤーの参照
+    /// </summary>
+    private GameObject player;
+
+    /// <summary>
+    /// プレイヤーの参照取得
+    /// </summary>
+    public GameObject Player
+    {
+        get => player;
     }
 
     /// <summary>
@@ -60,6 +72,51 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     {
         get => horizontalSpeed;
         set => horizontalSpeed = value;
+    }
+
+    /// <summary>
+    /// 通常落下速度
+    /// </summary>
+    [SerializeField]
+    private float nomalFallSpeed;
+
+    /// <summary>
+    /// 通常落下速度取得
+    /// </summary>
+    public float NomalFallSpeed
+    {
+        get => nomalFallSpeed;
+        set => nomalFallSpeed = value;
+    }
+
+    /// <summary>
+    /// 軽さ速度倍率
+    /// </summary>
+    [SerializeField]
+    private float lightMagnification;
+
+    /// <summary>
+    /// 軽さ速度倍率取得
+    /// </summary>
+    public float LightMagnification
+    {
+        get => lightMagnification;
+        set => lightMagnification = value;
+    }
+
+    /// <summary>
+    /// 重さ速度倍率
+    /// </summary>
+    [SerializeField]
+    private float heavyMagnification;
+
+    /// <summary>
+    /// 重さ速度倍率取得
+    /// </summary>
+    public float HeavyMagnification
+    {
+        get => heavyMagnification;
+        set => heavyMagnification = value;
     }
 
     /// <summary>
@@ -104,17 +161,34 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         set => isLeftWall = value;
     }
 
+    /// <summary>
+    /// 地面に当たっているか
+    /// </summary>
+    private bool isGround;
+
+    /// <summary>
+    /// 地面に当たっているか取得
+    /// </summary>
+    private bool IsGround
+    {
+        get => isGround;
+        set => isGround = value;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
+        // 通常速度で初期化
+        weight = Weight.NORMAL;
+
+        // プレイヤーの参照を取得
+        player = gameObject;
+
         // 動ける状態で初期化
         isMovable = true;
 
         // 両壁に当たっていない状態で初期化
         isRightWall = false;
         isLeftWall = false;
-
-        // 通常速度で初期化
-        weight = Weight.NORMAL;
     }
 }
