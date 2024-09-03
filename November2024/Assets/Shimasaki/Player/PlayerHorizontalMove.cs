@@ -55,7 +55,7 @@ public class PlayerHorizontalMove : MonoBehaviour
         horizontalValue = Input.GetAxisRaw("Horizontal");
 
         // もしキーボード入力があれば反映
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             horizontalValue = KeyInput();
         }
@@ -116,23 +116,29 @@ public class PlayerHorizontalMove : MonoBehaviour
         float distance = transform.localScale.y - rayDistance * 2.0f;
 
         // レイ生成
-        Ray ray = new Ray(startPos,Vector2.down);
+        Ray ray = new Ray(startPos, Vector2.down);
 
-        Debug.DrawRay(startPos, Vector2.down * distance ,Color.red);
+        Debug.DrawRay(startPos, Vector2.down * distance, Color.red);
 
         // レイを飛ばして当たったら右壁判定
-        if (Physics2D.Raycast(startPos,Vector2.down,distance))
+        if (Physics2D.Raycast(startPos, Vector2.down, distance))
         {
-            playerManager.IsRightWall = true;
+            if (!playerManager.IsRightWall)
+            {
+                playerManager.IsRightWall = true;
+            }
 
+            // 座標調整
             transform.position = RoundPositionX();
-
-            Debug.Log("右壁");
         }
-        // そうでない時は判定しない
+
+        // そうでない時は右壁判定しない
         else
         {
-            playerManager.IsRightWall = false;
+            if (playerManager.IsRightWall)
+            {
+                playerManager.IsRightWall = false;
+            }
         }
     }
 
@@ -156,16 +162,22 @@ public class PlayerHorizontalMove : MonoBehaviour
         // レイを飛ばして当たったら左壁判定
         if (Physics2D.Raycast(startPos, Vector2.down, distance))
         {
-            playerManager.IsLeftWall = true;
+            if (!playerManager.IsLeftWall)
+            {
+                playerManager.IsLeftWall = true;
+            }
 
+            // 座標調整
             transform.position = RoundPositionX();
-
-            Debug.Log("左壁");
         }
-        // そうでない時は判定しない
+
+        // そうでない時は左壁判定しない
         else
         {
-            playerManager.IsLeftWall = false;
+            if (playerManager.IsLeftWall)
+            {
+                playerManager.IsLeftWall = false;
+            }
         }
     }
 
@@ -192,13 +204,13 @@ public class PlayerHorizontalMove : MonoBehaviour
         float result = 0.0f;
 
         // A入力で左入力
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             result -= 1.0f;
         }
 
         // D入力で右入力
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             result += 1.0f;
         }
