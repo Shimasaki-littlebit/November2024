@@ -6,7 +6,7 @@ using PlayerWeight;
 /// <summary>
 /// カメラの動き
 /// </summary>
-public class CameraMove : MonoBehaviour
+public class CameraMove : SingletonMonoBehaviour<CameraMove>
 {
     /// <summary>
     /// プレイヤーマネージャー
@@ -19,16 +19,36 @@ public class CameraMove : MonoBehaviour
     [SerializeField]
     private float cameraShift;
 
+    ///// <summary>
+    ///// 移動用タイマー
+    ///// </summary>
+    //private Timer moveTimer;
+
+    //private bool isMoveUp;
+
+    //private bool isMoveDown;
+
     // Start is called before the first frame update
     private void Start()
     {
         // プレイヤーマネージャー取得
         playerManager = PlayerManager.Instance;
+
+        //// タイマー初期化
+        //moveTimer = new();
+
+        //isMoveUp = false;
+        //isMoveDown = false;
     }
 
     private void FixedUpdate()
     {
         TrackingPlayer();
+
+        //MoveUp();
+
+        // タイマー計算
+        //moveTimer.Count(Time.deltaTime);
     }
 
     /// <summary>
@@ -66,4 +86,33 @@ public class CameraMove : MonoBehaviour
         // 座標反映
         transform.position = cameraPos;
     }
+
+    //public void StartMoveUp()
+    //{
+    //    isMoveUp = true;
+
+    //    moveTimer.SetTimer(0.5f, EndMoveUp);
+    //}
+
+    //private void EndMoveUp()
+    //{
+    //    isMoveUp = false;
+
+    //    var pos = transform.localPosition;
+
+    //    pos.y = Mathf.Round(pos.y);
+
+    //    transform.localPosition = pos;
+    //}
+
+    //private void MoveUp()
+    //{
+    //    if (!isMoveUp) return;
+
+    //    var cameraPos = transform.localPosition;
+
+    //    cameraPos.y += cameraShift * Time.deltaTime * 2.0f;
+
+    //    transform.localPosition = cameraPos;
+    //}
 }

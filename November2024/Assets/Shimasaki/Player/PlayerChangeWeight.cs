@@ -24,6 +24,11 @@ public class PlayerChangeWeight : MonoBehaviour
     private float coolTime = 0.5f;
 
     /// <summary>
+    /// カメラ移動スクリプト
+    /// </summary>
+    private CameraMove camera;
+
+    /// <summary>
     /// クールダウン中か
     /// </summary>
     private bool isCoolDown;
@@ -39,6 +44,8 @@ public class PlayerChangeWeight : MonoBehaviour
 
         // クールダウンフラグ初期化
         isCoolDown = false;
+
+        camera = CameraMove.Instance;
     }
 
     // Update is called once per frame
@@ -66,7 +73,7 @@ public class PlayerChangeWeight : MonoBehaviour
         if (!LeftInput() && !RightInput()) return;
 
         // 左シフト
-        if(LeftInput())
+        if (LeftInput())
         {
             ShiftLeft();
         }
@@ -86,6 +93,7 @@ public class PlayerChangeWeight : MonoBehaviour
     {
         if (Input.GetAxisRaw("RTrigger") > 0.0f) return true;
         if (Input.GetKeyDown("joystick button 5")) return true;
+        if (Input.GetKeyDown(KeyCode.RightArrow)) return true;
 
         return false;
     }
@@ -98,6 +106,7 @@ public class PlayerChangeWeight : MonoBehaviour
     {
         if (Input.GetAxisRaw("LTrigger") > 0.0f) return true;
         if (Input.GetKeyDown("joystick button 4")) return true;
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) return true;
 
         return false;
     }
@@ -126,6 +135,8 @@ public class PlayerChangeWeight : MonoBehaviour
 
         // 左にシフト
         playerManager.GetWeight--;
+
+        //camera.StartMoveUp();
 
         StartCoolDown();
     }
