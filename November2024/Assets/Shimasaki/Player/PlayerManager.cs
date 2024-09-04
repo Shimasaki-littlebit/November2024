@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerWeight;
 
-/// <summary>
-/// プレイヤーマネージャー
-/// </summary>
-public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
+namespace PlayerWeight
 {
     /// <summary>
     /// 重さ列挙型
@@ -16,6 +14,13 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         NORMAL,
         HEAVY,
     }
+}
+
+/// <summary>
+/// プレイヤーマネージャー
+/// </summary>
+public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
+{
 
     /// <summary>
     /// プレイヤーの重さ
@@ -169,7 +174,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     /// <summary>
     /// 地面に当たっているか取得
     /// </summary>
-    private bool IsGround
+    public bool IsGround
     {
         get => isGround;
         set => isGround = value;

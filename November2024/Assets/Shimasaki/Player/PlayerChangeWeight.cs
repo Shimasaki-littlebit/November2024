@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerWeight;
 
 /// <summary>
 /// プレイヤーの重さを変更するクラス
@@ -107,7 +108,7 @@ public class PlayerChangeWeight : MonoBehaviour
     private void ShiftRight()
     {
         // 既に重ければ終了
-        if (playerManager.GetWeight >= PlayerManager.Weight.HEAVY) return;
+        if (playerManager.GetWeight >= Weight.HEAVY) return;
 
         // 右にシフト
         playerManager.GetWeight++;
@@ -121,7 +122,7 @@ public class PlayerChangeWeight : MonoBehaviour
     private void ShiftLeft()
     {
         // 既に軽ければ終了
-        if (playerManager.GetWeight <= PlayerManager.Weight.LIGHT) return;
+        if (playerManager.GetWeight <= Weight.LIGHT) return;
 
         // 左にシフト
         playerManager.GetWeight--;
