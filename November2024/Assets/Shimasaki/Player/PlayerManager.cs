@@ -180,14 +180,17 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         set => isGround = value;
     }
 
+    private void Awake()
+    {
+        // プレイヤーの参照を取得
+        player = gameObject;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
         // 通常速度で初期化
         weight = Weight.NORMAL;
-
-        // プレイヤーの参照を取得
-        player = gameObject;
 
         // 動ける状態で初期化
         isMovable = true;
