@@ -182,7 +182,7 @@ public class PlayerHorizontalMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 座標の四捨五入修正
+    /// X座標の四捨五入修正
     /// (移動の値が大きい場合はすり抜ける)
     /// </summary>
     /// <returns>修正後座標</returns>
