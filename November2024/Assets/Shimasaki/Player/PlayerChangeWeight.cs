@@ -24,11 +24,6 @@ public class PlayerChangeWeight : MonoBehaviour
     private float coolTime = 0.5f;
 
     /// <summary>
-    /// カメラ移動スクリプト
-    /// </summary>
-    private CameraMove camera;
-
-    /// <summary>
     /// クールダウン中か
     /// </summary>
     private bool isCoolDown;
@@ -44,8 +39,6 @@ public class PlayerChangeWeight : MonoBehaviour
 
         // クールダウンフラグ初期化
         isCoolDown = false;
-
-        camera = CameraMove.Instance;
     }
 
     // Update is called once per frame
@@ -122,6 +115,14 @@ public class PlayerChangeWeight : MonoBehaviour
         // 右にシフト
         playerManager.GetWeight++;
 
+        // 重いなら重武器表示
+        if (playerManager.GetWeight == Weight.HEAVY)
+        {
+            var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
+
+            playerHeavyWeapon.ShowHeavyWeapon();
+        }
+
         StartCoolDown();
     }
 
@@ -136,7 +137,10 @@ public class PlayerChangeWeight : MonoBehaviour
         // 左にシフト
         playerManager.GetWeight--;
 
-        //camera.StartMoveUp();
+        // 重武器非表示
+        var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
+
+        playerHeavyWeapon.HideHeavyWeapon();
 
         StartCoolDown();
     }
