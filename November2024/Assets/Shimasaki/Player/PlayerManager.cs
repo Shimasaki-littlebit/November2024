@@ -25,6 +25,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     /// <summary>
     /// プレイヤーの重さ
     /// </summary>
+    [SerializeField]
     private Weight weight;
 
     /// <summary>
@@ -47,6 +48,20 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     public GameObject Player
     {
         get => player;
+    }
+
+    /// <summary>
+    /// 重武器
+    /// </summary>
+    [SerializeField]
+    private GameObject heavyWeapon;
+
+    /// <summary>
+    /// 重武器取得
+    /// </summary>
+    public GameObject HeavyWeapon
+    {
+        get => heavyWeapon;
     }
 
     /// <summary>
@@ -191,6 +206,9 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     {
         // 通常速度で初期化
         weight = Weight.NORMAL;
+
+        // 重武器を非表示で初期化
+        heavyWeapon.SetActive(false);
 
         // 動ける状態で初期化
         isMovable = true;
