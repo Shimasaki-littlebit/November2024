@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -16,13 +17,12 @@ public class ScoreBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Debug.Log(ScoreManager.Test());
+            ScoreManager.InsertRanking(15);
         }
 
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             ScoreManager.SaveHighScore();
         }
