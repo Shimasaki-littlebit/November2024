@@ -195,8 +195,10 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         set => isGround = value;
     }
 
-    private void Awake()
+    override protected void Awake()
     {
+        CheckInstance();
+
         // プレイヤーの参照を取得
         player = gameObject;
     }

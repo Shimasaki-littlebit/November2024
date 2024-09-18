@@ -26,6 +26,7 @@ public class Cannon : MonoBehaviour
     /// <summary>
     /// 右向きか
     /// </summary>
+    [SerializeField]
     private bool isRight;
 
     /// <summary>
@@ -41,7 +42,7 @@ public class Cannon : MonoBehaviour
     private void Start()
     {
         shotTimer = new();
-        
+
         // 右向きで初期化
         isRight = true;
 
@@ -51,8 +52,16 @@ public class Cannon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // タイマーカウント
-        shotTimer.Count(Time.deltaTime);
+        if (shotTimer.isTimerStart())
+        {
+            // タイマーカウント
+            shotTimer.Count(Time.deltaTime);
+        }
+        else
+        {
+            // タイマーセット
+            shotTimer.SetTimer(shotInterval, FinishShotTimer);
+        }
     }
 
     /// <summary>
@@ -63,8 +72,8 @@ public class Cannon : MonoBehaviour
         // 発射
         ShotBullet();
 
-        // タイマーセット
-        shotTimer.SetTimer(shotInterval, FinishShotTimer);
+        //// タイマーセット
+        //shotTimer.SetTimer(shotInterval, FinishShotTimer);
     }
 
     /// <summary>
@@ -82,9 +91,11 @@ public class Cannon : MonoBehaviour
             shotPos += Vector2.right;
 
             // 本体右側に弾を生成
-            var bullet = Instantiate(bulletPrefab,shotPos,Quaternion.identity);
-            
-            // 弾を飛ばす
+            var bullet = Instantiate(bulletPrefab, shotPos, Quaternion.identity);
+
+            // スクリプトを取得して発射処理
+            var bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.Shot(isRight);
         }
 
         // 左向きの場合
@@ -96,7 +107,9 @@ public class Cannon : MonoBehaviour
             // 本体右側に弾を生成
             var bullet = Instantiate(bulletPrefab, shotPos, Quaternion.identity);
 
-            // 弾を飛ばす
+            // スクリプトを取得して発射処理
+            var bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.Shot(isRight);
         }
     }
 }

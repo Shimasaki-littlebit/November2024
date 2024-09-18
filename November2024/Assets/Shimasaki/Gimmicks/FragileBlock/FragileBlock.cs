@@ -20,11 +20,10 @@ public class FragileBlock : MonoBehaviour
     /// </summary>
     private bool isDisplay = false;
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
+    /// <summary>
+    /// プレイヤーのレイヤーマスク
+    /// </summary>
+    private int playerLayerMask = 1 << 3;
 
     // Update is called once per frame
     private void Update()
@@ -44,13 +43,10 @@ public class FragileBlock : MonoBehaviour
         // レイの距離
         float distance = transform.localScale.x - rayDistance * 2.0f;
 
-        // レイ生成
-        Ray ray = new Ray(startPos, Vector2.right);
-
         Debug.DrawRay(startPos, Vector2.right * distance, Color.red);
 
         // レイを飛ばして当たったらtrueを返す
-        if (Physics2D.Raycast(startPos, Vector2.right, distance))
+        if (Physics2D.Raycast(startPos, Vector2.right, distance, playerLayerMask))
         {
             return true;
         }

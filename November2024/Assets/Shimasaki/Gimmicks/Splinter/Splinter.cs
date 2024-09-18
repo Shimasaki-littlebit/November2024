@@ -85,9 +85,6 @@ public class Splinter : MonoBehaviour
         // ƒŒƒC‚Ì‹——£
         float distance = transform.localScale.x - rayDistance * 2.0f;
 
-        // ƒŒƒC¶¬
-        Ray ray = new Ray(startPos, Vector2.right);
-
         Debug.DrawRay(startPos, Vector2.right * distance, Color.red);
 
         // ƒŒƒC‚ğ”ò‚Î‚µ‚Ä“–‚½‚Á‚½‚çtrue‚ğ•Ô‚·
