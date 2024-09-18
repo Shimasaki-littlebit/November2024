@@ -50,8 +50,15 @@ public class TitleSceneManager : MonoBehaviour
 
                 break;
 
-            // ゲーム終了
+            // クレジットに
             case 2:
+
+                SceneManager.LoadScene("CreditScene");
+
+                break;
+
+            // ゲーム終了
+            case 3:
 
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
