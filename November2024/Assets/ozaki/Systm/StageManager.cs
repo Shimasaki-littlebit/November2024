@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -41,6 +42,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     private StageData data;
 
+    private StageData[] dataTable = new StageData[6];
+
     public enum MapChip
     {
         /// <summary>
@@ -53,12 +56,50 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         Wall,
     }
 
+    public enum Stage
+    {
+        /// <summary>
+        /// ステージ01
+        /// </summary>
+        Stage1 = 1,
+        /// <summary>
+        /// ステージ02
+        /// </summary>
+        Stage2,
+        /// <summary>
+        /// ステージ03
+        /// </summary>
+        Stage3,
+        /// <summary>
+        /// ステージ04
+        /// </summary>
+        Stage4,
+        /// <summary>
+        /// ステージ05
+        /// </summary>
+        Stage5,
+        /// <summary>
+        /// ステージ06
+        /// </summary>
+        Stage6,
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        data = JsonReader.LoadStage("Sumple");
+        //data = JsonReader.LoadStage(Stage.Stage1.ToString());
 
-        StageGenerator(data);
+        //StageGenerator(data);
+
+        // jsonを配列に格納しておく
+        for (int i = (int)Stage.Stage1; i <= (int)Stage.Stage6; i++)
+        {
+            dataTable[i - 1] = (JsonReader.LoadStage("Stage" + i));
+
+            data = dataTable[i - 1];
+
+            StageGenerator(data);
+        }
     }
 
     // Update is called once per frame
@@ -69,6 +110,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     private void StageGenerator(StageData hoge)
     {
+        Debug.Log(hoge);
+
         //タイルマップ初期化する
         mapPos.ClearAllTiles();
 

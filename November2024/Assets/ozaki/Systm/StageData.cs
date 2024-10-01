@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 [System.Serializable]
 public class StageData
 {
@@ -11,3 +14,8 @@ public class StageData
 
     public int[] MapChip;
 }
+
+//public class StageDataTable:ScriptableObject
+//{
+//    public List<StageData> StageTable = new();
+//}
