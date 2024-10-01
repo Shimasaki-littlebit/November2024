@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -42,18 +39,27 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     private StageData data;
 
+    public StageData Data
+    { get=>  data; set => data = value; }
+
     private StageData[] dataTable = new StageData[6];
+
+    private float startPos = 0.0f;
 
     public enum MapChip
     {
         /// <summary>
         /// 空
         /// </summary>
-        Empty,
+        EMPTY,
         /// <summary>
         /// 壁
         /// </summary>
-        Wall,
+        WALL,
+        /// <summary>
+        /// センサー付き壁
+        /// </summary>
+        WALLSENSOR,
     }
 
     public enum Stage
@@ -97,9 +103,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
             dataTable[i - 1] = (JsonReader.LoadStage("Stage" + i));
 
             data = dataTable[i - 1];
-
-            StageGenerator(data);
         }
+
+        StageGenerator(data);
     }
 
     // Update is called once per frame
@@ -111,9 +117,6 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     private void StageGenerator(StageData hoge)
     {
         Debug.Log(hoge);
-
-        //タイルマップ初期化する
-        mapPos.ClearAllTiles();
 
         //ステージ配列の添え字最大値を取得
         arrayHeight = hoge.Height;
@@ -132,14 +135,51 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
                 switch (chip)
                 {
-                    case MapChip.Empty:
+                    case MapChip.EMPTY:
                         break;
-                    case MapChip.Wall:
+                    case MapChip.WALL:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(col, hoge.Height - (row + 1)));
+                        break;
+                    case MapChip.WALLSENSOR:
                         EntryWall(chip, mapPos.GetCellCenterWorld(position), new(col, hoge.Height - (row + 1)));
                         break;
                 }
+            }
+        }
 
+        NextStage();
+    }
 
+    public void NextStageGenetator(StageData hoge,float fuga)
+    {
+        Debug.Log(hoge);
+        Debug.Log(fuga);
+        //ステージ配列の添え字最大値を取得
+        arrayHeight = hoge.Height;
+        arrayWidth = hoge.Width;
+
+        //左上から順番においていく
+        for (int row = 0; row < hoge.Height; ++row)
+        {
+            for (int col = 0; col < hoge.Width; ++col)
+            {
+                //座標を取得と整えてる
+                Vector3Int position = new(col, hoge.Height - (row + 1) + ((int)fuga - hoge.Height));
+
+                //一時配列なので座標足す
+                var chip = (MapChip)hoge.MapChip[col + (row * hoge.Width)];
+
+                switch (chip)
+                {
+                    case MapChip.EMPTY:
+                        break;
+                    case MapChip.WALL:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        break;
+                    case MapChip.WALLSENSOR:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        break;
+                }
             }
         }
     }
@@ -153,5 +193,14 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     {
         //オブジェクト配置
         Instantiate(mapchip[(int)chipCode], hoge, Quaternion.identity);
+    }
+
+    private void NextStage()
+    {
+        var rnd = Random.Range(1, 6);
+
+        dataTable[rnd - 1] = (JsonReader.LoadStage("Stage" + rnd));
+
+        data = dataTable[rnd - 1];
     }
 }
