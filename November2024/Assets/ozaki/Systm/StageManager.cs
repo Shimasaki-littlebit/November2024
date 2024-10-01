@@ -150,6 +150,11 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         NextStage();
     }
 
+    /// <summary>
+    /// ステージ作成
+    /// </summary>
+    /// <param name="hoge">ステージのデータ番号</param>
+    /// <param name="fuga">ステージ作成の高さ</param>
     public void NextStageGenetator(StageData hoge,float fuga)
     {
         Debug.Log(hoge);
@@ -182,6 +187,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                 }
             }
         }
+        // 次のステージを決める
+        NextStage();
     }
 
     /// <summary>
@@ -195,12 +202,17 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         Instantiate(mapchip[(int)chipCode], hoge, Quaternion.identity);
     }
 
+    /// <summary>
+    /// 次のステージを決める
+    /// </summary>
     private void NextStage()
     {
-        var rnd = Random.Range(1, 6);
+        // 次のステージ番号を決める
+        var rnd = Random.Range(1, 7);
 
-        dataTable[rnd - 1] = (JsonReader.LoadStage("Stage" + rnd));
+        Debug.Log(rnd);
 
+        // データの設定
         data = dataTable[rnd - 1];
     }
 }
