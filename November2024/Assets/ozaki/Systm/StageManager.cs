@@ -122,6 +122,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         arrayHeight = hoge.Height;
         arrayWidth = hoge.Width;
 
+        Debug.Log(arrayHeight);
+        Debug.Log(arrayWidth);
+
         //¶ã‚©‚ç‡”Ô‚É‚¨‚¢‚Ä‚¢‚­
         for (int row = 0; row < hoge.Height; ++row)
         {
