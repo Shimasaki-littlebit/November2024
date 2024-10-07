@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -18,15 +19,14 @@ public class PlayerDamage : MonoBehaviour
     private Timer invincibleTimer;
 
     /// <summary>
-    /// 無敵時間
-    /// </summary>
-    [SerializeField]
-    private float invincibleTime;
-
-    /// <summary>
     /// 無敵時間かどうか
     /// </summary>
     private bool isInvincible;
+
+    /// <summary>
+    /// 落下が止まっている時のタイマー
+    /// </summary>
+    private Timer stopTimer;
 
     // Start is called before the first frame update
     private void Start()
@@ -34,10 +34,12 @@ public class PlayerDamage : MonoBehaviour
         // プレイヤーマネージャー取得
         playerManager = PlayerManager.Instance;
 
-        // タイマー初期化
+        // 無敵時間タイマー初期化
         invincibleTimer = new();
         // 無敵時間初期化
         isInvincible = false;
+        // 停止タイマー初期化
+        stopTimer = new();
     }
 
     
@@ -48,6 +50,8 @@ public class PlayerDamage : MonoBehaviour
         {
             invincibleTimer.Count(Time.deltaTime);
         }
+
+        StopTimeCalc();
     }
 
     /// <summary>
@@ -88,7 +92,7 @@ public class PlayerDamage : MonoBehaviour
         isInvincible = true;
 
         // 無敵時間タイマーを設定
-        invincibleTimer.SetTimer(invincibleTime,FinishInvincible);
+        invincibleTimer.SetTimer(playerManager.InvincibleTime,FinishInvincible);
     }
 
     /// <summary>
@@ -99,4 +103,44 @@ public class PlayerDamage : MonoBehaviour
         isInvincible = false;
     }
 
+    /// <summary>
+    /// 落下停止時の時間計算
+    /// </summary>
+    private void StopTimeCalc()
+    {
+        // 接地中なら落下停止タイマーを開始
+        if (playerManager.IsGround)
+        {
+            // 開始していなければ開始
+            if (!stopTimer.isTimerStart())
+            {
+                stopTimer.SetTimer(playerManager.StopLimit, StopTimeLimit);
+            }
+
+            // 開始していればタイマー計算
+            else
+            {
+                stopTimer.Count(Time.deltaTime);
+            }
+        }
+
+        // 接地中でなければタイマーをリセット
+        else
+        {
+            // タイマーが始まっていればタイマーリセット
+            if (stopTimer.isTimerStart())
+            {
+                stopTimer.ResetTimer();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 落下停止時間が終了した時の処理
+    /// </summary>
+    private void StopTimeLimit()
+    {
+        // ゲームオーバーに
+        GameOver();
+    }
 }
