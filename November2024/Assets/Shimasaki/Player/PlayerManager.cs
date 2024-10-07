@@ -224,6 +224,20 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         get => stopLimit;
     }
 
+    /// <summary>
+    /// ゲームオーバー時待機時間
+    /// </summary>
+    [SerializeField]
+    private float gameOverWait;
+
+    /// <summary>
+    /// ゲームオーバー時待機時間取得
+    /// </summary>
+    public float GameOverWait
+    {
+        get => gameOverWait;
+    }
+
     override protected void Awake()
     {
         CheckInstance();

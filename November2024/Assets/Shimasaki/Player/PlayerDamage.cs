@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// プレイヤーの被ダメージ処理
@@ -28,6 +29,11 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private Timer stopTimer;
 
+    /// <summary>
+    /// ゲームオーバー計算用タイマー
+    /// </summary>
+    private Timer gameOverTimer;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -40,6 +46,8 @@ public class PlayerDamage : MonoBehaviour
         isInvincible = false;
         // 停止タイマー初期化
         stopTimer = new();
+        // ゲームオーバータイマー取得
+        gameOverTimer = new();
     }
 
     
@@ -51,6 +59,9 @@ public class PlayerDamage : MonoBehaviour
             invincibleTimer.Count(Time.deltaTime);
         }
 
+        // ゲームオーバータイマーの計算
+        gameOverTimer.Count(Time.deltaTime);
+
         StopTimeCalc();
     }
 
@@ -60,7 +71,7 @@ public class PlayerDamage : MonoBehaviour
     /// <param name="damageValue">ダメージ値</param>
     public void TakeDamage(int damageValue)
     {
-        // 無敵時間ならリターン
+        // 無敵時間なら終了
         if (isInvincible) return;
 
         // 無敵時間開始
@@ -81,7 +92,11 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private void GameOver()
     {
-        
+        // プレイヤーの移動を停止
+        playerManager.IsMovable = false;
+
+        // ゲームオーバーのタイマー開始
+        gameOverTimer.SetTimer(playerManager.GameOverWait, EndScene);
     }
 
     /// <summary>
@@ -142,5 +157,14 @@ public class PlayerDamage : MonoBehaviour
     {
         // ゲームオーバーに
         GameOver();
+    }
+
+    /// <summary>
+    /// シーン終了
+    /// </summary>
+    private void EndScene()
+    {
+        // リザルトシーンへ
+        SceneManager.LoadScene("ResultScene");
     }
 }
