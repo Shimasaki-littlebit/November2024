@@ -69,6 +69,8 @@ public class PlayerChangeWeight : MonoBehaviour
     {
         // クールダウン中なら終了
         if (isCoolDown) return;
+        // 移動できなければ終了
+        if (!playerManager.IsMovable) return;        
 
         // 入力がないか、同時入力があれば終了
         if (LeftInput() && RightInput()) return;

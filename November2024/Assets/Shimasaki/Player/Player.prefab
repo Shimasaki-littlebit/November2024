@@ -197,6 +197,7 @@ MonoBehaviour:
   heavyMagnification: 1.2
   invincibleTime: 0.5
   stopLimit: 3
+  gameOverWait: 3
 --- !u!114 &6235229333483062269
 MonoBehaviour:
   m_ObjectHideFlags: 0
