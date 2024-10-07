@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerWeight;
+using Unity.VisualScripting;
 
 /// <summary>
 /// プレイヤーの重さを変更するクラス
@@ -19,6 +20,11 @@ public class PlayerChangeWeight : MonoBehaviour
     private Timer coolTimer;
 
     /// <summary>
+    /// 重さ切り替えUI
+    /// </summary>
+    private WeightChangeUI weightChangeUI;
+
+    /// <summary>
     /// クールダウン時間
     /// </summary>
     private float coolTime = 0.5f;
@@ -28,12 +34,15 @@ public class PlayerChangeWeight : MonoBehaviour
     /// </summary>
     private bool isCoolDown;
 
+    
+
     // Start is called before the first frame update
     private void Start()
     {
         // プレイヤーマネージャー取得
         playerManager = PlayerManager.Instance;
 
+        weightChangeUI = WeightChangeUI.Instance;
         // タイマー初期化
         coolTimer = new();
 
@@ -115,6 +124,9 @@ public class PlayerChangeWeight : MonoBehaviour
         // 右にシフト
         playerManager.GetWeight++;
 
+        //UIを動かす
+        weightChangeUI.ShiftMove();
+
         // 重いなら重武器表示
         if (playerManager.GetWeight == Weight.HEAVY)
         {
@@ -136,6 +148,9 @@ public class PlayerChangeWeight : MonoBehaviour
 
         // 左にシフト
         playerManager.GetWeight--;
+
+        //UIを動かす
+        weightChangeUI.ShiftMove();
 
         // 重武器非表示
         var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
