@@ -182,6 +182,21 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     }
 
     /// <summary>
+    /// 無敵時間
+    /// </summary>
+    [SerializeField]
+    private float invincibleTime;
+
+    /// <summary>
+    /// 無敵時間取得
+    /// </summary>
+    public float InvincibleTime
+    {
+        get => invincibleTime;
+        set => invincibleTime = value;
+    }
+
+    /// <summary>
     /// 地面に当たっているか
     /// </summary>
     private bool isGround;
@@ -193,6 +208,20 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     {
         get => isGround;
         set => isGround = value;
+    }
+
+    /// <summary>
+    /// 落下停止時のタイムリミット
+    /// </summary>
+    [SerializeField]
+    private float stopLimit;
+
+    /// <summary>
+    /// 落下停止時タイムリミット取得
+    /// </summary>
+    public float StopLimit
+    {
+        get => stopLimit;
     }
 
     override protected void Awake()
