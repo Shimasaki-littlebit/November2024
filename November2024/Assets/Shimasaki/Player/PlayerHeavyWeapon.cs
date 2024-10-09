@@ -19,27 +19,27 @@ public class PlayerHeavyWeapon : MonoBehaviour
         playerManager = PlayerManager.Instance;
     }
 
-    /// <summary>
-    /// 重武器表示
-    /// </summary>
-    public void ShowHeavyWeapon()
-    {
-        // 非表示なら表示に
-        if(!playerManager.HeavyWeapon.activeSelf)
-        {
-            playerManager.HeavyWeapon.SetActive(true);
-        }
-    }
+    ///// <summary>
+    ///// 重武器表示
+    ///// </summary>
+    //public void ShowHeavyWeapon()
+    //{
+    //    // 非表示なら表示に
+    //    if(!playerManager.HeavyWeapon.activeSelf)
+    //    {
+    //        playerManager.HeavyWeapon.SetActive(true);
+    //    }
+    //}
 
-    /// <summary>
-    /// 重武器非表示
-    /// </summary>
-    public void HideHeavyWeapon()
-    {
-        // 表示中なら非表示に
-        if (playerManager.HeavyWeapon.activeSelf)
-        {
-            playerManager.HeavyWeapon.SetActive(false);
-        }
-    }
+    ///// <summary>
+    ///// 重武器非表示
+    ///// </summary>
+    //public void HideHeavyWeapon()
+    //{
+    //    // 表示中なら非表示に
+    //    if (playerManager.HeavyWeapon.activeSelf)
+    //    {
+    //        playerManager.HeavyWeapon.SetActive(false);
+    //    }
+    //}
 }

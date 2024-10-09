@@ -25,6 +25,11 @@ public class PlayerChangeWeight : MonoBehaviour
     private WeightChangeUI weightChangeUI;
 
     /// <summary>
+    /// プレイヤーの見た目変更
+    /// </summary>
+    private PlayerImageChange imageChange;
+
+    /// <summary>
     /// クールダウン時間
     /// </summary>
     private float coolTime = 0.5f;
@@ -48,6 +53,9 @@ public class PlayerChangeWeight : MonoBehaviour
 
         // クールダウンフラグ初期化
         isCoolDown = false;
+
+        // 画像変更スクリプトのインスタンス取得
+        imageChange = GetComponent<PlayerImageChange>();
     }
 
     // Update is called once per frame
@@ -129,13 +137,16 @@ public class PlayerChangeWeight : MonoBehaviour
         //UIを動かす
         weightChangeUI.ShiftMove();
 
-        // 重いなら重武器表示
-        if (playerManager.GetWeight == Weight.HEAVY)
-        {
-            var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
+        // 見た目更新
+        imageChange.SetPlayerImage();
 
-            playerHeavyWeapon.ShowHeavyWeapon();
-        }
+        //// 重いなら重武器表示
+        //if (playerManager.GetWeight == Weight.HEAVY)
+        //{
+        //    var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
+
+        //    playerHeavyWeapon.ShowHeavyWeapon();
+        //}
 
         StartCoolDown();
     }
@@ -154,10 +165,13 @@ public class PlayerChangeWeight : MonoBehaviour
         //UIを動かす
         weightChangeUI.ShiftMove();
 
-        // 重武器非表示
-        var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
+        // 見た目更新
+        imageChange.SetPlayerImage();
 
-        playerHeavyWeapon.HideHeavyWeapon();
+        //// 重武器非表示
+        //var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
+
+        //playerHeavyWeapon.HideHeavyWeapon();
 
         StartCoolDown();
     }
