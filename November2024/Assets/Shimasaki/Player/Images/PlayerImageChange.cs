@@ -27,15 +27,10 @@ public class PlayerImageChange : MonoBehaviour
         spriteRenderer = playerManager.PlayerImage.GetComponent<SpriteRenderer>();
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
     /// <summary>
     /// 見た目のセット
     /// </summary>
-    private void SetPlayerImage()
+    public void SetPlayerImage()
     {
         // 重量を見て分岐
         switch(playerManager.GetWeight)
@@ -43,21 +38,34 @@ public class PlayerImageChange : MonoBehaviour
             // 軽い
             case Weight.LIGHT:
 
+                // 画像切り替え
                 spriteRenderer.sprite = playerManager.LightImage;
+
+                // プロペラ表示
+                playerManager.LightPropeller.SetActive(true);
 
                 break;
 
             // 普通
             case Weight.NORMAL:
 
+                // 画像切り替え
                 spriteRenderer.sprite = playerManager.NormalImage;
+
+                // 各重さ系を非表示
+                playerManager.LightPropeller.SetActive(false);
+                playerManager.HeavyWeapon.SetActive(false);
 
                 break;
 
             // 重い
             case Weight.HEAVY:
 
+                // 画像切り替え
                 spriteRenderer.sprite = playerManager.HeavyImage;
+
+                // 重い武器表示
+                playerManager.HeavyWeapon.SetActive(true);
 
                 break;
         }
