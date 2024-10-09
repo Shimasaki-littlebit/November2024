@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayerWeight;
+using UnityEngine.UI;
 
 namespace PlayerWeight
 {
@@ -62,6 +63,34 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     public GameObject HeavyWeapon
     {
         get => heavyWeapon;
+    }
+
+    /// <summary>
+    /// 軽い時のプロペラ
+    /// </summary>
+    [SerializeField]
+    private GameObject lightPropeller;
+
+    /// <summary>
+    /// 軽い時のプロペラ取得
+    /// </summary>
+    public GameObject LightPropeller
+    {
+        get => lightPropeller;
+    }
+
+    /// <summary>
+    /// プレイヤーの画像
+    /// </summary>
+    [SerializeField]
+    private GameObject playerImage;
+
+    /// <summary>
+    /// プレイヤーの画像取得
+    /// </summary>
+    public GameObject PlayerImage
+    {
+        get => playerImage;
     }
 
     /// <summary>
@@ -238,6 +267,48 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         get => gameOverWait;
     }
 
+    /// <summary>
+    /// 軽い時の画像
+    /// </summary>
+    [SerializeField]
+    private Sprite lightImage;
+
+    /// <summary>
+    /// 軽い時の画像
+    /// </summary>
+    public Sprite LightImage
+    {
+        get => lightImage;
+    }
+
+    /// <summary>
+    /// 通常時の画像
+    /// </summary>
+    [SerializeField]
+    private Sprite normalImage;
+
+    /// <summary>
+    /// 通常時の画像
+    /// </summary>
+    public Sprite NormalImage
+    {
+        get => normalImage;
+    }
+
+    /// <summary>
+    /// 重い時の画像
+    /// </summary>
+    [SerializeField]
+    private Sprite heavyImage;
+
+    /// <summary>
+    /// 重い時の画像
+    /// </summary>
+    public Sprite HeavyImage
+    {
+        get => heavyImage;
+    }
+
     override protected void Awake()
     {
         CheckInstance();
@@ -254,6 +325,8 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
 
         // 重武器を非表示で初期化
         heavyWeapon.SetActive(false);
+        // プロペラを非表示で初期化
+        lightPropeller.SetActive(false);
 
         // 動ける状態で初期化
         isMovable = true;
