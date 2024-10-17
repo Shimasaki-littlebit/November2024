@@ -34,6 +34,21 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private Timer gameOverTimer;
 
+    /// <summary>
+    /// 見た目点滅用タイマー
+    /// </summary>
+    private Timer appearanceTimer;
+
+    /// <summary>
+    /// 点滅用間隔
+    /// </summary>
+    private float appearanceInterval = 0.2f;
+
+    /// <summary>
+    /// スプライトレンダラー
+    /// </summary>
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -46,8 +61,13 @@ public class PlayerDamage : MonoBehaviour
         isInvincible = false;
         // 停止タイマー初期化
         stopTimer = new();
-        // ゲームオーバータイマー取得
+        // ゲームオーバータイマー初期化
         gameOverTimer = new();
+        // 見た目タイマー初期化
+        appearanceTimer = new();
+
+        // スプライトレンダラー取得
+        spriteRenderer = playerManager.PlayerImage.GetComponent<SpriteRenderer>();
     }
 
     
@@ -57,11 +77,28 @@ public class PlayerDamage : MonoBehaviour
         if (isInvincible)
         {
             invincibleTimer.Count(Time.deltaTime);
+
+            // 見た目タイマー計算
+            StartCalcAppearanceTimer();
+        }
+        else
+        {
+            // 見た目タイマーがスタートしていればリセット
+            if(appearanceTimer.isTimerStart())
+            {
+                appearanceTimer.ResetTimer();
+            }
         }
 
         // ゲームオーバータイマーの計算
         gameOverTimer.Count(Time.deltaTime);
 
+        // 見た目用タイマーの計算
+        appearanceTimer.Count(Time.deltaTime);
+
+
+
+        // ゲームオーバー時の時間計算
         StopTimeCalc();
     }
 
@@ -116,6 +153,8 @@ public class PlayerDamage : MonoBehaviour
     private void FinishInvincible()
     {
         isInvincible = false;
+
+        ResetAppearance();
     }
 
     /// <summary>
@@ -148,6 +187,57 @@ public class PlayerDamage : MonoBehaviour
                 stopTimer.ResetTimer();
             }
         }
+    }
+
+    /// <summary>
+    /// 見た目用タイマーを開始
+    /// </summary>
+    private void StartCalcAppearanceTimer()
+    {
+        // タイマーが既に開始していれば終了
+        if (appearanceTimer.isTimerStart()) return;
+
+        // タイマーセット
+        appearanceTimer.SetTimer(appearanceInterval, DamageAppearance);
+    }
+
+    /// <summary>
+    /// 被ダメージ時の見た目
+    /// </summary>
+    private void DamageAppearance()
+    {
+        // 見た目があれば消す
+        if(spriteRenderer.color.a > 0.5f)
+        {
+            var color = spriteRenderer.color;
+            
+            color.a = 0.0f;
+
+            spriteRenderer.color = color;
+        }
+        // なければ出す
+        else
+        {
+            var color = spriteRenderer.color;
+
+            color.a = 1.0f;
+
+            spriteRenderer.color = color;
+        }
+    }
+
+    /// <summary>
+    /// 被ダメージ時の見た目を終了
+    /// </summary>
+    private void ResetAppearance()
+    {
+        // 見える状態にする
+        
+        var color = spriteRenderer.color;
+
+        color.a = 1.0f;
+
+        spriteRenderer.color = color;
     }
 
     /// <summary>

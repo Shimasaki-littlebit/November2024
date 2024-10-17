@@ -22,6 +22,11 @@ public class PlayerHorizontalMove : MonoBehaviour
     /// </summary>
     private float rayDistance = 0.05f;
 
+    /// <summary>
+    /// 壁のレイヤー
+    /// </summary>
+    private int wallLayer = 1 << 6;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -121,7 +126,7 @@ public class PlayerHorizontalMove : MonoBehaviour
         Debug.DrawRay(startPos, Vector2.down * distance, Color.red);
 
         // レイを飛ばして当たったら右壁判定
-        if (Physics2D.Raycast(startPos, Vector2.down, distance))
+        if (Physics2D.Raycast(startPos, Vector2.down, distance,wallLayer))
         {
             if (!playerManager.IsRightWall)
             {
@@ -160,7 +165,7 @@ public class PlayerHorizontalMove : MonoBehaviour
         Debug.DrawRay(startPos, Vector2.down * distance, Color.red);
 
         // レイを飛ばして当たったら左壁判定
-        if (Physics2D.Raycast(startPos, Vector2.down, distance))
+        if (Physics2D.Raycast(startPos, Vector2.down, distance, wallLayer))
         {
             if (!playerManager.IsLeftWall)
             {

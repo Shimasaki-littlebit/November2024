@@ -28,6 +28,11 @@ public class PlayerVerticalMove : MonoBehaviour
     /// </summary>
     private float rayDistance = 0.05f;
 
+    /// <summary>
+    /// 壁のレイヤー
+    /// </summary>
+    private int wallLayer = 1 << 6;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -126,7 +131,7 @@ public class PlayerVerticalMove : MonoBehaviour
         Debug.DrawRay(startPos, Vector2.right * distance, Color.green);
 
         // レイを飛ばして当たったら地面判定
-        if (Physics2D.Raycast(startPos, Vector2.right, distance))
+        if (Physics2D.Raycast(startPos, Vector2.right, distance,wallLayer))
         {
             if (!playerManager.IsGround)
             {
