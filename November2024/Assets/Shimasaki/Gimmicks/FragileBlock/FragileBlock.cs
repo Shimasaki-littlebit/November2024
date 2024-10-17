@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerWeight;
 
 // メモ　Rayの判定要改善
 
@@ -24,6 +25,17 @@ public class FragileBlock : MonoBehaviour
     /// プレイヤーのレイヤーマスク
     /// </summary>
     private int playerLayerMask = 1 << 3;
+
+    /// <summary>
+    /// プレイヤーマネージャー
+    /// </summary>
+    private PlayerManager playerManager;
+
+    private void Start()
+    {
+        // インスタンス取得
+        playerManager = PlayerManager.Instance;
+    }
 
     // Update is called once per frame
     private void Update()
@@ -65,6 +77,9 @@ public class FragileBlock : MonoBehaviour
         // 壊す判定Rayに当たっていれば壊す
         if(BreakBlockRay())
         {
+            // プレイヤーの重さが重いじゃなければ終了
+            if (playerManager.GetWeight != Weight.HEAVY) return;
+
             Destroy(gameObject);
         }
     }
