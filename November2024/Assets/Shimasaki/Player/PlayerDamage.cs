@@ -15,6 +15,11 @@ public class PlayerDamage : MonoBehaviour
     private PlayerManager playerManager;
 
     /// <summary>
+    /// 体力の画像
+    /// </summary>
+    private LifeUI lifeUI;
+
+    /// <summary>
     /// 無敵時間タイマー
     /// </summary>
     private Timer invincibleTimer;
@@ -54,6 +59,9 @@ public class PlayerDamage : MonoBehaviour
     {
         // プレイヤーマネージャー取得
         playerManager = PlayerManager.Instance;
+
+        // 体力UI取得
+        lifeUI = LifeUI.Instance;
 
         // 無敵時間タイマー初期化
         invincibleTimer = new();
@@ -116,6 +124,9 @@ public class PlayerDamage : MonoBehaviour
 
         // 体力を減らす
         playerManager.HitPoint-= damageValue;
+
+        // 体力表示
+        lifeUI.DisplayLife();
 
         // 体力がなくればゲームオーバー処理
         if(playerManager.HitPoint <= 0)
@@ -245,8 +256,8 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private void StopTimeLimit()
     {
-        // ゲームオーバーに
-        GameOver();
+        // 現存体力分のダメージを食らってゲームオーバーに
+        TakeDamage(playerManager.HitPoint);
     }
 
     /// <summary>
