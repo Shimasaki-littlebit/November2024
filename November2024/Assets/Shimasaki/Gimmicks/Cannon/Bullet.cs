@@ -18,6 +18,12 @@ public class Bullet : MonoBehaviour
     private PlayerDamage playerDamage;
 
     /// <summary>
+    /// ’e‚Ì‰æ‘œ
+    /// </summary>
+    [SerializeField]
+    private GameObject bulletImage;
+
+    /// <summary>
     /// ˆÚ“®‘¬“x
     /// </summary>
     [SerializeField]
@@ -67,6 +73,27 @@ public class Bullet : MonoBehaviour
     {
         // ”­ŽË•ûŒü‚ðŒˆ’è
         isRight = shotRight;
+
+        ImageDirection();
+    }
+
+    /// <summary>
+    /// ‰æ‘œ‚Ì•ûŒü‚ð•Ï‚¦‚é
+    /// </summary>
+    private void ImageDirection()
+    {
+        var rotate = bulletImage.transform.eulerAngles;
+
+        if (isRight)
+        {
+            rotate.z = 0.0f;           
+        }
+        else
+        {
+            rotate.z = 180.0f;
+        }
+
+        bulletImage.transform.eulerAngles = rotate;
     }
 
     /// <summary>
