@@ -43,9 +43,6 @@ public class Cannon : MonoBehaviour
     {
         shotTimer = new();
 
-        // 右向きで初期化
-        isRight = true;
-
         // タイマーセット
         shotTimer.SetTimer(shotInterval, FinishShotTimer);
     }

@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// スコアボードのシーン遷移
+/// 一旦タイトルへ移動
 /// </summary>
-public class ScoreBoardSceneManager : MonoBehaviour
+public class ResultSceneManager : MonoBehaviour
 {
     // Update is called once per frame
     private void Update()
     {
         // AボタンorEnterキーorAキー入力でシーン読み込み
-        if (Input.GetKeyDown("joystick button 0") || 
+        if (Input.GetKeyDown("joystick button 0") ||
             Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.A))
         {

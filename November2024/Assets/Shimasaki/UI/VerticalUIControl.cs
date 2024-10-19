@@ -37,13 +37,16 @@ public class VerticalUIControl : MonoBehaviour
     private float stopInputTime = 0.2f;
 
     /// <summary>
-    /// 入力停止計算用
+    /// 入力停止用タイマー
     /// </summary>
-    private float calTime = 0.0f;
+    private Timer stopTimer;
 
     // Start is called before the first frame update
     private void Start()
     {
+        // タイマー初期化
+        stopTimer = new();
+
         // 初期表示
         DisplayImage();
     }
@@ -56,10 +59,7 @@ public class VerticalUIControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isStopInput)
-        {
-            CalculationStopTime();
-        }
+        stopTimer.Count(Time.deltaTime);
     }
 
     /// <summary>
@@ -75,11 +75,11 @@ public class VerticalUIControl : MonoBehaviour
         // 左スティック縦入力を検知
         vertical = Input.GetAxisRaw("Vertical");
 
-        // 下入力orキーボードS入力があればボタン番号を増やす
-        if (vertical > 0.0f || Input.GetKey(KeyCode.S))
+        // 下入力orキーボードSor十字キー下入力があればボタン番号を増やす
+        if (vertical > 0.0f || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            // 入力停止フラグを建てる
-            isStopInput = true;
+            // 入力停止開始
+            StartStopInput();
 
             // 下限なら返す
             if (selectNum <= 0) return;
@@ -89,11 +89,11 @@ public class VerticalUIControl : MonoBehaviour
             // 画像更新
             DisplayImage();
         }
-        // 上入力orキーボードW入力があればボタン番号を増やす
-        else if (vertical < 0.0f || Input.GetKey(KeyCode.W))
+        // 上入力orキーボードWor十字キー上入力があればボタン番号を増やす
+        else if (vertical < 0.0f || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            // 入力停止フラグを建てる
-            isStopInput = true;
+            // 入力停止開始
+            StartStopInput();
 
             // 上限なら返す
             if (selectNum >= targetButtons.Length - 1) return;
@@ -129,18 +129,26 @@ public class VerticalUIControl : MonoBehaviour
     }
 
     /// <summary>
-    /// 入力停止中の時間計算
+    /// 入力停止開始
     /// </summary>
-    private void CalculationStopTime()
+    private void StartStopInput()
     {
-        calTime += Time.deltaTime;
+        // 入力停止フラグを建てる
+        isStopInput = true;
 
-        // 入力停止時間が終われば入力を受け付ける状態に
-        if (calTime >= stopInputTime)
-        {
-            isStopInput = false;
+        Debug.Log("入力停止");
 
-            calTime = 0.0f;
-        }
+        // タイマーセット
+        stopTimer.SetTimer(stopInputTime, EndStopInput);
+    }
+    
+    /// <summary>
+    /// 入力停止終了
+    /// </summary>
+    private void EndStopInput()
+    {
+        isStopInput = false;
+
+        Debug.Log("入力再開");
     }
 }

@@ -11,8 +11,10 @@ public class CreditSceneManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // AボタンorEnterキー入力でシーン読み込み
-        if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Return))
+        // AボタンorEnterキーorAキー入力でシーン読み込み
+        if (Input.GetKeyDown("joystick button 0") || 
+            Input.GetKeyDown(KeyCode.Return)||
+            Input.GetKeyDown(KeyCode.A))
         {
             LoadScene();
         }
