@@ -159,7 +159,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.50377357, g: 0.7189286, b: 1, a: 0.24313726}
+  m_Color: {r: 0.50377357, g: 0.7189286, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -201,7 +201,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -212,7 +212,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.3}
   m_EdgeRadius: 0
 --- !u!1 &4178956077257437303
 GameObject:
@@ -335,7 +335,7 @@ MonoBehaviour:
   gameOverWait: 3
   lightImage: {fileID: 21300000, guid: 03e36f03bf3a5d6408f489d8c0d0ce39, type: 3}
   normalImage: {fileID: 21300000, guid: 6e8981a4d7e6bff46b2d03c38093ee5a, type: 3}
-  heavyImage: {fileID: 21300000, guid: 6e8981a4d7e6bff46b2d03c38093ee5a, type: 3}
+  heavyImage: {fileID: 21300000, guid: c0a5fa8e313328140b5e106a32974252, type: 3}
 --- !u!114 &6235229333483062269
 MonoBehaviour:
   m_ObjectHideFlags: 0
