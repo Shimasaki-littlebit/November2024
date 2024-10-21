@@ -60,6 +60,22 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         /// センサー付き壁
         /// </summary>
         WALLSENSOR,
+        /// <summary>
+        /// 棘
+        /// </summary>
+        SPLINTER,
+        /// <summary>
+        /// 壊せるブロック
+        /// </summary>
+        FRAGILEBLOCK,
+        /// <summary>
+        /// 大砲(右向き)
+        /// </summary>
+        CANNONRIGHT,
+        /// <summary>
+        /// 大砲(左向き)
+        /// </summary>
+        CANNONLEFT,
     }
 
     public enum Stage
@@ -187,6 +203,19 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                     case MapChip.WALLSENSOR:
                         EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
                         break;
+                    case MapChip.SPLINTER:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        break;
+                    case MapChip.FRAGILEBLOCK:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        break;
+                    case MapChip.CANNONRIGHT:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        break;
+                    case MapChip.CANNONLEFT:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        break;
+
                 }
             }
         }
