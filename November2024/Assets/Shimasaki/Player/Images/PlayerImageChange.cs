@@ -54,7 +54,7 @@ public class PlayerImageChange : MonoBehaviour
 
                 // 各重さ系を非表示
                 playerManager.LightPropeller.SetActive(false);
-                playerManager.HeavyWeapon.SetActive(false);
+                //playerManager.HeavyWeapon.SetActive(false);
 
                 break;
 
@@ -65,7 +65,7 @@ public class PlayerImageChange : MonoBehaviour
                 spriteRenderer.sprite = playerManager.HeavyImage;
 
                 // 重い武器表示
-                playerManager.HeavyWeapon.SetActive(true);
+                //playerManager.HeavyWeapon.SetActive(true);
 
                 break;
         }

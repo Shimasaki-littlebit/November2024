@@ -39,12 +39,12 @@ public class PlayerHorizontalMove : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // 横入力感知
-        HorizontalInput();
-
         // 左右の当たり判定レイ
         RightRay();
         LeftRay();
+  
+        // 横入力感知
+        HorizontalInput();
     }
 
     private void FixedUpdate()
