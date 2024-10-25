@@ -76,6 +76,10 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         /// 大砲(左向き)
         /// </summary>
         CANNONLEFT,
+        /// <summary>
+        /// スコア加算用ブロック
+        /// </summary>
+        SCOREBROCK,
     }
 
     public enum Stage
@@ -157,10 +161,10 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                     case MapChip.EMPTY:
                         break;
                     case MapChip.WALL:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(col, hoge.Height - (row + 1)));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.WALLSENSOR:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(col, hoge.Height - (row + 1)));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                 }
             }
@@ -198,22 +202,22 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                     case MapChip.EMPTY:
                         break;
                     case MapChip.WALL:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.WALLSENSOR:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.SPLINTER:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.FRAGILEBLOCK:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.CANNONRIGHT:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.CANNONLEFT:
-                        EntryWall(chip, mapPos.GetCellCenterWorld(position), new(position.x, position.y));
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
 
                 }
@@ -228,10 +232,10 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     /// </summary>
     /// <param name="chipCode">オブジェクト番号</param>
     /// <param name="hoge">ポジション</param>
-    private void EntryWall(MapChip chipCode, Vector3 hoge, Vector2Int fuga)
+    private void EntryWall(MapChip chipCode, Vector3 hoge)
     {
         //オブジェクト配置
-        Instantiate(mapchip[(int)chipCode], hoge, Quaternion.identity);
+        Instantiate(mapchip[(int)chipCode], new Vector3(hoge.x - 0.5f, hoge.y - 0.5f, hoge.z), Quaternion.identity);
     }
 
     /// <summary>

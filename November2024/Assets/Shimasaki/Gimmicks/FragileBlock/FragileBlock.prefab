@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1851856882765475811}
   - component: {fileID: 7082701640529290999}
   - component: {fileID: 4940813274863501880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FragileBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
