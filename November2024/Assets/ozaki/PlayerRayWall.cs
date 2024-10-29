@@ -5,29 +5,11 @@ using UnityEngine;
 
 public class PlayerRayWall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
-
     private void RayChack()
     {
         RaycastHit2D[] hits;
 
-        hits = Physics2D.RaycastAll((new Vector2(transform.position.x - 10.0f, transform.position.y + 10.0f)),
+        hits = Physics2D.RaycastAll((new Vector2(transform.position.x - 30.0f, transform.position.y + 20.0f)),
                                      transform.right,
                                      100.0f);
 
