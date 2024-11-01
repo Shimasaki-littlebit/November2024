@@ -46,6 +46,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     private float startPos = 0.0f;
 
+    private int StageCount = 0;
+
     public enum MapChip
     {
         /// <summary>
@@ -136,6 +138,10 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
     private void StageGenerator(StageData hoge)
     {
+        StageCount++;
+
+        Debug.Log(StageCount);
+
         Debug.Log(hoge);
 
         //ステージ配列の添え字最大値を取得
@@ -166,6 +172,19 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                     case MapChip.WALLSENSOR:
                         EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
+                    case MapChip.SPLINTER:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
+                        break;
+                    case MapChip.FRAGILEBLOCK:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
+                        break;
+                    case MapChip.CANNONRIGHT:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
+                        break;
+                    case MapChip.CANNONLEFT:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
+                        break;
+
                 }
             }
         }
@@ -180,6 +199,10 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     /// <param name="fuga">ステージ作成の高さ</param>
     public void NextStageGenetator(StageData hoge,float fuga)
     {
+        StageCount++;
+
+        Debug.Log(StageCount);
+
         Debug.Log(hoge);
         Debug.Log(fuga);
         //ステージ配列の添え字最大値を取得
