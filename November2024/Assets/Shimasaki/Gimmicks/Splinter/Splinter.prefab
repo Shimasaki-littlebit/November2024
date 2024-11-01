@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2641155243659099268}
   - component: {fileID: 917227677706026547}
   - component: {fileID: 5443522805957210183}
+  - component: {fileID: 905686513099913077}
   m_Layer: 6
   m_Name: Splinter
   m_TagString: Untagged
@@ -145,6 +146,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &905686513099913077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133584819795606695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fedbe1676153464389507f40ba76ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9222900905260989333
 GameObject:
   m_ObjectHideFlags: 0

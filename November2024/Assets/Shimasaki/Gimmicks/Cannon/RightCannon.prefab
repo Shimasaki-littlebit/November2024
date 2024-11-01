@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 8643278697753228424}
   - component: {fileID: 6796392277818533609}
   - component: {fileID: 9099996512579893672}
+  - component: {fileID: 5250289014129440589}
   - component: {fileID: 1181816977322665004}
   m_Layer: 6
   m_Name: RightCannon
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7697614359680629130, guid: d7efbfe0f540ad248bfbe6e5885c7a7a, type: 3}
   isRight: 1
+--- !u!114 &5250289014129440589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014546231240644002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fedbe1676153464389507f40ba76ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1181816977322665004
 BoxCollider2D:
   m_ObjectHideFlags: 0

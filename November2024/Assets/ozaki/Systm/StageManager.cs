@@ -184,6 +184,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                     case MapChip.CANNONLEFT:
                         EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
+                    case MapChip.SCOREBROCK:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
+                        break;
 
                 }
             }
@@ -240,6 +243,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
                         EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
                     case MapChip.CANNONLEFT:
+                        EntryWall(chip, mapPos.GetCellCenterWorld(position));
+                        break;
+                    case MapChip.SCOREBROCK:
                         EntryWall(chip, mapPos.GetCellCenterWorld(position));
                         break;
 

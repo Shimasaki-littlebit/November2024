@@ -54,6 +54,11 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private SpriteRenderer spriteRenderer;
 
+    /// <summary>
+    /// ステージのスコア
+    /// </summary>
+    private StageScore stageScore;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -76,6 +81,8 @@ public class PlayerDamage : MonoBehaviour
 
         // スプライトレンダラー取得
         spriteRenderer = playerManager.PlayerImage.GetComponent<SpriteRenderer>();
+
+        stageScore = StageScore.Instance;
     }
 
     
@@ -142,6 +149,9 @@ public class PlayerDamage : MonoBehaviour
     {
         // プレイヤーの移動を停止
         playerManager.IsMovable = false;
+
+        // スコアを代入して保持する
+        stageScore.PlayEndScore();
 
         // ゲームオーバーのタイマー開始
         gameOverTimer.SetTimer(playerManager.GameOverWait, EndScene);

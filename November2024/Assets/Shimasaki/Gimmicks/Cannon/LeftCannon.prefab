@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 6796392277818533609}
   - component: {fileID: 9099996512579893672}
   - component: {fileID: 1181816977322665004}
+  - component: {fileID: -1413796302871614707}
   m_Layer: 6
   m_Name: LeftCannon
   m_TagString: Untagged
@@ -315,3 +316,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-1413796302871614707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014546231240644002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fedbe1676153464389507f40ba76ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
