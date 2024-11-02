@@ -1,6 +1,4 @@
 using PlayerWeight;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -16,7 +14,7 @@ public class CameraShift : MonoBehaviour
     /// <summary>
     /// d‚¢‚ÌØ‚è‘Ö‚¦‘¬“x
     /// </summary>
-    private float heavyChangeSpeed = 0.05f;
+    private float heavyChangeSpeed = 0.02f;
 
     /// <summary>
     /// Œy‚¢‚ÌØ‚è‘Ö‚¦‘¬“x

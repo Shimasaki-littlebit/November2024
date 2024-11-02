@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PlayerWeight;
 
 /// <summary>
 /// プレイヤーの被ダメージ処理
@@ -50,9 +48,14 @@ public class PlayerDamage : MonoBehaviour
     private float appearanceInterval = 0.2f;
 
     /// <summary>
-    /// スプライトレンダラー
+    /// プレイヤースプライトレンダラー
     /// </summary>
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer playerSpriteRenderer;
+
+    /// <summary>
+    /// 軽い時のプロペラスプライトレンダラー
+    /// </summary>
+    private SpriteRenderer lightPropellerSpriteRenderer;
 
     /// <summary>
     /// ステージのスコア
@@ -80,12 +83,13 @@ public class PlayerDamage : MonoBehaviour
         appearanceTimer = new();
 
         // スプライトレンダラー取得
-        spriteRenderer = playerManager.PlayerImage.GetComponent<SpriteRenderer>();
+        playerSpriteRenderer = playerManager.PlayerImage.GetComponent<SpriteRenderer>();
+        lightPropellerSpriteRenderer = playerManager.LightPropeller.GetComponent<SpriteRenderer>();
 
         stageScore = StageScore.Instance;
     }
 
-    
+
     private void FixedUpdate()
     {
         // 無敵時間なら無敵時間計算
@@ -99,7 +103,7 @@ public class PlayerDamage : MonoBehaviour
         else
         {
             // 見た目タイマーがスタートしていればリセット
-            if(appearanceTimer.isTimerStart())
+            if (appearanceTimer.isTimerStart())
             {
                 appearanceTimer.ResetTimer();
             }
@@ -110,8 +114,6 @@ public class PlayerDamage : MonoBehaviour
 
         // 見た目用タイマーの計算
         appearanceTimer.Count(Time.deltaTime);
-
-
 
         // ゲームオーバー時の時間計算
         StopTimeCalc();
@@ -130,13 +132,13 @@ public class PlayerDamage : MonoBehaviour
         StartInvincible();
 
         // 体力を減らす
-        playerManager.HitPoint-= damageValue;
+        playerManager.HitPoint -= damageValue;
 
         // 体力表示
         lifeUI.DisplayLife();
 
         // 体力がなくればゲームオーバー処理
-        if(playerManager.HitPoint <= 0)
+        if (playerManager.HitPoint <= 0)
         {
             GameOver();
         }
@@ -165,7 +167,7 @@ public class PlayerDamage : MonoBehaviour
         isInvincible = true;
 
         // 無敵時間タイマーを設定
-        invincibleTimer.SetTimer(playerManager.InvincibleTime,FinishInvincible);
+        invincibleTimer.SetTimer(playerManager.InvincibleTime, FinishInvincible);
     }
 
     /// <summary>
@@ -175,7 +177,9 @@ public class PlayerDamage : MonoBehaviour
     {
         isInvincible = false;
 
-        ResetAppearance();
+        // 各点滅している見た目をリセットする
+        ResetAppearance(playerSpriteRenderer);
+        ResetAppearance(lightPropellerSpriteRenderer);
     }
 
     /// <summary>
@@ -191,7 +195,6 @@ public class PlayerDamage : MonoBehaviour
             {
                 stopTimer.SetTimer(playerManager.StopLimit, StopTimeLimit);
             }
-
             // 開始していればタイマー計算
             else
             {
@@ -227,11 +230,26 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private void DamageAppearance()
     {
+        // プレイヤーの見た目を点滅させる
+        ImageFlashing(playerSpriteRenderer);
+
+        // 軽い時はプロペラも点滅させる
+        if (playerManager.GetWeight == Weight.LIGHT)
+        {
+            ImageFlashing(lightPropellerSpriteRenderer);
+        }
+    }
+
+    /// <summary>
+    /// 画像の点滅
+    /// </summary>
+    private void ImageFlashing(SpriteRenderer spriteRenderer)
+    {
         // 見た目があれば消す
-        if(spriteRenderer.color.a > 0.5f)
+        if (spriteRenderer.color.a > 0.5f)
         {
             var color = spriteRenderer.color;
-            
+
             color.a = 0.0f;
 
             spriteRenderer.color = color;
@@ -250,10 +268,10 @@ public class PlayerDamage : MonoBehaviour
     /// <summary>
     /// 被ダメージ時の見た目を終了
     /// </summary>
-    private void ResetAppearance()
+    private void ResetAppearance(SpriteRenderer spriteRenderer)
     {
         // 見える状態にする
-        
+
         var color = spriteRenderer.color;
 
         color.a = 1.0f;

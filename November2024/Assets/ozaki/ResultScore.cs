@@ -13,7 +13,7 @@ public class ResultScore : MonoBehaviour
     {
         ScoreManager.InsertRanking(StageScore.EndScore);
 
-        scoreText.text = "SCORE : " + StageScore.EndScore;
+        scoreText.text = "ÉXÉRÉA : " + StageScore.EndScore;
     }
 
     // Update is called once per frame

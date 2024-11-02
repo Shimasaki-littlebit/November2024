@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -41,6 +39,8 @@ public class ClockMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        clockTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main,playerTransform.position + offset);
+        // タイマーの位置をプレイヤー+オフセットの位置に調整し続ける
+        clockTransform.position = RectTransformUtility.
+            WorldToScreenPoint(Camera.main,playerTransform.position + offset);
     }
 }

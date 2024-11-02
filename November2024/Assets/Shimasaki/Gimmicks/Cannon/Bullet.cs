@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -45,6 +43,17 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private int playerLayerMask = 1 << 3;
 
+    /// <summary>
+    /// 寿命計算用タイマー
+    /// </summary>
+    private Timer lifeTimer;
+
+    /// <summary>
+    /// 寿命
+    /// </summary>
+    [SerializeField]
+    private float lifeTime;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -53,6 +62,12 @@ public class Bullet : MonoBehaviour
 
         // プレイヤーダメージスクリプト取得
         playerDamage = playerManager.Player.GetComponent<PlayerDamage>();
+
+        // 寿命タイマー初期化
+        lifeTimer = new();
+
+        // 寿命タイマーをセット
+        lifeTimer.SetTimer(lifeTime, Delete);
     }
 
     private void Update()

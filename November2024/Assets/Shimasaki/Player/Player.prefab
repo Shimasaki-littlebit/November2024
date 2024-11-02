@@ -229,9 +229,9 @@ GameObject:
   - component: {fileID: 3466377117995315051}
   - component: {fileID: 7974181899150282611}
   - component: {fileID: 6457173651253808406}
-  - component: {fileID: 7457488422855210067}
   - component: {fileID: 5285781736272032962}
   - component: {fileID: 5050775597915107907}
+  - component: {fileID: 4638915134733103135}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -327,7 +327,7 @@ MonoBehaviour:
   playerImage: {fileID: 187930475557019507}
   hitPoint: 5
   horizontalSpeed: 10
-  nomalFallSpeed: 4
+  nomalFallSpeed: 8
   lightMagnification: 0.7
   heavyMagnification: 1.2
   invincibleTime: 1
@@ -382,18 +382,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9348825c78bdb8e47aae439b45d2510d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7457488422855210067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4178956077257437303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa47004a66eddb45950ac76fcbff79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5285781736272032962
@@ -453,6 +441,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4638915134733103135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178956077257437303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38958f8b9bd40b848ab13a630a0a4b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5729542087209939768
 GameObject:
   m_ObjectHideFlags: 0

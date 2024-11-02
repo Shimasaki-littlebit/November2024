@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -76,21 +74,7 @@ public class VerticalUIControl : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
 
         // 下入力orキーボードSor十字キー下入力があればボタン番号を増やす
-        if (vertical > 0.0f || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            // 入力停止開始
-            StartStopInput();
-
-            // 下限なら返す
-            if (selectNum <= 0) return;
-
-            --selectNum;
-
-            // 画像更新
-            DisplayImage();
-        }
-        // 上入力orキーボードWor十字キー上入力があればボタン番号を増やす
-        else if (vertical < 0.0f || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (vertical < 0.0f || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // 入力停止開始
             StartStopInput();
@@ -102,6 +86,25 @@ public class VerticalUIControl : MonoBehaviour
 
             // 画像更新
             DisplayImage();
+
+            Debug.Log("上");
+        }
+
+        // 上入力orキーボードWor十字キー上入力があればボタン番号を増やす
+        if (vertical > 0.0f || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            // 入力停止開始
+            StartStopInput();
+
+            // 下限なら返す
+            if (selectNum <= 0) return;
+
+            --selectNum;
+
+            // 画像更新
+            DisplayImage();
+
+            Debug.Log("下");
         }
     }
 

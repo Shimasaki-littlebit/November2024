@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// スコアマネージャー
@@ -58,6 +55,9 @@ public class ScoreManager
 
             // 順位の並べ替え
             SortRanking();
+
+            // スコアをセーブ
+            SaveHighScore();
 
             return true;
         }
