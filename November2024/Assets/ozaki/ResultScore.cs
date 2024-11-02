@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ public class ResultScore : MonoBehaviour
     {
         ScoreManager.InsertRanking(StageScore.EndScore);
 
-        scoreText.text = "スコア : " + StageScore.EndScore;
+        scoreText.text = "スコア : " + StageScore.EndScore + "m";
     }
 
     // Update is called once per frame

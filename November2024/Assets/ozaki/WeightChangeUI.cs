@@ -1,6 +1,4 @@
 using PlayerWeight;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeightChangeUI : SingletonMonoBehaviour<WeightChangeUI>
