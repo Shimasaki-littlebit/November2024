@@ -23,7 +23,7 @@ public class StageScore : SingletonMonoBehaviour<StageScore>
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "Score: " + Score;
+        scoreText.text = "スコア: " + Score;
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class StageScore : SingletonMonoBehaviour<StageScore>
     {
         Score += addScore;
 
-        scoreText.text = "Score: " + Score;
+        scoreText.text = "スコア: " + Score;
     }
 
     /// <summary>

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayerWeight;
 
@@ -71,28 +69,40 @@ public class PlayerVerticalMove : MonoBehaviour
     /// <returns>速度</returns>
     private float GetSpeed()
     {
+        float result = 0.0f;
+
         // プレイヤーの重さで分岐
         switch (playerManager.GetWeight)
         {
             // 軽い
             case Weight.LIGHT:
 
-                return lightFallSpeed;
+                result = lightFallSpeed;
+
+                break;
 
             // 普通
             case Weight.NORMAL:
 
-                return playerManager.NomalFallSpeed;
+                result = playerManager.NomalFallSpeed;
+
+                break;
 
             // 重い
             case Weight.HEAVY:
 
-                return heavyFallSpeed;
+                result = heavyFallSpeed;
+
+                break;
 
             default:
 
-                return playerManager.NomalFallSpeed;
+                result = playerManager.NomalFallSpeed;
+
+                break;
         }
+
+        return result;
     }
 
     /// <summary>

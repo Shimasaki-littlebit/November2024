@@ -187,6 +187,7 @@ MonoBehaviour:
   bulletImage: {fileID: 2071471460319878578}
   moveSpeed: 6
   bulletDamage: 1
+  lifeTime: 5
 --- !u!61 &5757136065530871739
 BoxCollider2D:
   m_ObjectHideFlags: 0

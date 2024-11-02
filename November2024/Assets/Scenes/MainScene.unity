@@ -777,8 +777,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1325505224559155678, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
-      propertyPath: nomalFallSpeed
-      value: 8
+      propertyPath: gameOverWait
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4178956077257437303, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
       propertyPath: m_Name
@@ -787,28 +787,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4178956077257437303, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 920374391}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
---- !u!1 &920374379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4178956077257437303, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
-  m_PrefabInstance: {fileID: 920374378}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &920374391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920374379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38958f8b9bd40b848ab13a630a0a4b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &951461747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,7 +1412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 245, y: 180}
+  m_AnchoredPosition: {x: 240, y: 160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1380968874
@@ -1455,10 +1435,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: "\u30B9\u30B3\u30A2"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c55d69f0f36220b4c901f3b3c64e4ab0, type: 2}
+  m_sharedMaterial: {fileID: -6051698402834480660, guid: c55d69f0f36220b4c901f3b3c64e4ab0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2176,7 +2156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128.4375, y: 85.625}
+  m_AnchoredPosition: {x: 155, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1733020153

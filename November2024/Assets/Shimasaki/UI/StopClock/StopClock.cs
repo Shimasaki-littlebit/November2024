@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +23,22 @@ public class StopClock : MonoBehaviour
     private Image clockInner;
 
     /// <summary>
-    /// 制限
+    /// 表示までの時間制限値
+    /// </summary>
+    private float initTimerStart = 1.0f;
+
+    /// <summary>
+    /// 表示までの時間制限計算値
+    /// </summary>
+    private float timerStart;
+
+    /// <summary>
+    /// 表示時間制限値
+    /// </summary>
+    private float initTimeLimit;
+
+    /// <summary>
+    /// 表示時間制限計算値
     /// </summary>
     private float timeLimit;
 
@@ -36,7 +49,7 @@ public class StopClock : MonoBehaviour
         playerManager = PlayerManager.Instance;
 
         // 制限時間を初期化
-        timeLimit = playerManager.StopLimit;
+        ResetTimeLimits();
 
         // 表示の内枠ゲージ取得
         clockInner = clockObject.transform.GetChild(0).GetComponent<Image>();
@@ -60,27 +73,36 @@ public class StopClock : MonoBehaviour
         // プレイヤーが接地中
         if (playerManager.IsGround)
         {
-            // タイマーが非表示なら表示
-            if (!clockObject.activeSelf)
+            if (timerStart > 0.0f)
             {
-                clockObject.SetActive(true);
+                timerStart -= Time.deltaTime;
             }
+            else
+            {
+                // タイマーが非表示なら表示
+                if (!clockObject.activeSelf)
+                {
+                    clockObject.SetActive(true);
+                }
 
-            // タイムリミット表示を減算
-            timeLimit -= Time.deltaTime;
+                // タイムリミット表示を減算
+                timeLimit -= Time.deltaTime;
+            }
         }
-
         // 接地中じゃなければ
         else
         {
-            // タイマーが非表示なら終了
-            if (!clockObject.activeSelf) return;
+            // タイマー値が少しでも減っていればリセット
+            if (timerStart < initTimerStart)
+            {
+                ResetTimeLimits();
+            }
 
-            // タイムリミット表示初期化
-            timeLimit = playerManager.StopLimit;
-
-            // タイマー非表示
-            clockObject.SetActive(false);
+            // タイマーが表示中なら非表示
+            if (clockObject.activeSelf)
+            {
+                clockObject.SetActive(false);
+            }
         }
     }
 
@@ -89,10 +111,27 @@ public class StopClock : MonoBehaviour
     /// </summary>
     private void ClockInnerDisplay()
     {
-        // 接地中でなければ終了
-        if (!playerManager.IsGround) return;
+        // タイマーが表示されていなければ終了
+        if (!clockObject.activeSelf) return;
 
         // 表示領域を制限時間から計算して反映
-        clockInner.fillAmount = timeLimit / playerManager.StopLimit;
+        clockInner.fillAmount = timeLimit / initTimeLimit;
+    }
+
+    /// <summary>
+    /// 時間制限の初期化
+    /// </summary>
+    private void ResetTimeLimits()
+    {
+        Debug.Log("リセット");
+
+        // タイマー表示までの時間を初期化
+        timerStart = initTimerStart;
+
+        // タイマーの時間制限値を計算
+        initTimeLimit = playerManager.StopLimit - initTimerStart;
+
+        // タイマーの時間制限値を初期化
+        timeLimit = initTimeLimit;
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using PlayerWeight;
 
 /// <summary>
 /// ƒJƒƒ‰‚Ì“®‚«
@@ -32,7 +29,7 @@ public class CameraMove : MonoBehaviour
     {
         Vector3 cameraPos = transform.position;
 
-        cameraPos.y = playerManager.Player.transform.position.y -3.0f;
+        cameraPos.y = playerManager.Player.transform.position.y -1.5f;
 
         // À•W”½‰f
         transform.position = cameraPos;

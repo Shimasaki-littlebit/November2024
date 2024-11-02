@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using TMPro;
 
@@ -26,30 +23,19 @@ public class ScoreBoard : MonoBehaviour
         // スコアのデータを取得
         rankingData = ScoreManager.GetScoreData;
 
+        // スコア表示
         DisplayScoreRanking();
     }
-
-    //// Update is called once per frame
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.U))
-    //    {
-    //        ScoreManager.InsertRanking(15);
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        ScoreManager.SaveHighScore();
-    //    }
-    //}
 
     /// <summary>
     /// スコアの表示
     /// </summary>
     private void DisplayScoreRanking()
     {
+        // 添え字
         int num = 0;
 
+        // 各ランキングをテキストにセット
         foreach (var scoreObject in scoreObjects)
         {
             var scoreText = scoreObject.GetComponent<TextMeshProUGUI>();

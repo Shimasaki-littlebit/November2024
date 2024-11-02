@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using PlayerWeight;
-using Unity.VisualScripting;
 
 /// <summary>
 /// プレイヤーの重さを変更するクラス
@@ -140,14 +137,6 @@ public class PlayerChangeWeight : MonoBehaviour
         // 見た目更新
         imageChange.SetPlayerImage();
 
-        //// 重いなら重武器表示
-        //if (playerManager.GetWeight == Weight.HEAVY)
-        //{
-        //    var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
-
-        //    playerHeavyWeapon.ShowHeavyWeapon();
-        //}
-
         StartCoolDown();
     }
 
@@ -167,11 +156,6 @@ public class PlayerChangeWeight : MonoBehaviour
 
         // 見た目更新
         imageChange.SetPlayerImage();
-
-        //// 重武器非表示
-        //var playerHeavyWeapon = GetComponent<PlayerHeavyWeapon>();
-
-        //playerHeavyWeapon.HideHeavyWeapon();
 
         StartCoolDown();
     }
