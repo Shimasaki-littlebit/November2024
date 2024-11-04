@@ -42,7 +42,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
     public StageData Data
     { get=>  data; set => data = value; }
 
-    private StageData[] dataTable = new StageData[6];
+    private StageData[] dataTable = new StageData[7];
 
     private float startPos = 0.0f;
 
@@ -110,6 +110,10 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         /// ステージ06
         /// </summary>
         Stage6,
+        /// <summary>
+        /// ステージ07
+        /// </summary>
+        Stage7,
     }
 
     // Start is called before the first frame update
@@ -120,7 +124,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         //StageGenerator(data);
 
         // jsonを配列に格納しておく
-        for (int i = (int)Stage.Stage1; i <= (int)Stage.Stage6; i++)
+        for (int i = (int)Stage.Stage1; i <= (int)Stage.Stage7; i++)
         {
             dataTable[i - 1] = (JsonReader.LoadStage("Stage" + i));
 
