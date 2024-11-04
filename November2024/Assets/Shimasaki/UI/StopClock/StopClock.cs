@@ -70,8 +70,8 @@ public class StopClock : MonoBehaviour
     /// </summary>
     private void ClockCalc()
     {
-        // プレイヤーが接地中
-        if (playerManager.IsGround)
+        // プレイヤーが接地中かつ死んでいなければタイマー計算
+        if (playerManager.IsGround && !playerManager.IsDead)
         {
             if (timerStart > 0.0f)
             {
