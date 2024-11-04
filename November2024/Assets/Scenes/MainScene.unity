@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac9e88f3a2e24f4bad91bd7f2cad218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraShift: 3
+  cameraShift: 2
 --- !u!81 &1420527898
 AudioListener:
   m_ObjectHideFlags: 0

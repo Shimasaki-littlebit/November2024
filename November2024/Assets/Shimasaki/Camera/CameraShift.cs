@@ -14,12 +14,12 @@ public class CameraShift : MonoBehaviour
     /// <summary>
     /// 重い時の切り替え速度
     /// </summary>
-    private float heavyChangeSpeed = 0.02f;
+    private float heavyChangeSpeed = 0.12f;
 
     /// <summary>
     /// 軽い時の切り替え速度
     /// </summary>
-    private float lightChangeSpeed = 0.01f;
+    private float lightChangeSpeed = 0.06f;
 
     /// <summary>
     /// カメラをずらす幅
@@ -35,7 +35,7 @@ public class CameraShift : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         Shift();
     }
