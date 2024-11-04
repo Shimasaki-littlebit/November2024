@@ -306,6 +306,20 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         get => heavyImage;
     }
 
+    /// <summary>
+    /// €‚ñ‚¾‚©
+    /// </summary>
+    private bool isDead;
+
+    /// <summary>
+    /// €‚ñ‚¾‚©æ“¾
+    /// </summary>
+    public bool IsDead
+    { 
+        get=> isDead; 
+        set=> isDead = value; 
+    }
+
     override protected void Awake()
     {
         CheckInstance();
@@ -331,5 +345,8 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
         // —¼•Ç‚É“–‚½‚Á‚Ä‚¢‚È‚¢ó‘Ô‚Å‰Šú‰»
         isRightWall = false;
         isLeftWall = false;
+
+        // €‚ñ‚Å‚¢‚È‚¢ó‘Ô‚Å‰Šú‰»
+        isDead = false;
     }
 }

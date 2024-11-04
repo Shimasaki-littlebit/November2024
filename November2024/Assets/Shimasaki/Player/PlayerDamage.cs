@@ -152,6 +152,9 @@ public class PlayerDamage : MonoBehaviour
         // プレイヤーの移動を停止
         playerManager.IsMovable = false;
 
+        // 死亡フラグを立てる
+        playerManager.IsDead = true;
+
         // スコアを代入して保持する
         stageScore.PlayEndScore();
 
@@ -187,8 +190,8 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private void StopTimeCalc()
     {
-        // 接地中なら落下停止タイマーを開始
-        if (playerManager.IsGround)
+        // 接地中かつ生きていれば落下停止タイマーを開始
+        if (playerManager.IsGround && !playerManager.IsDead)
         {
             // 開始していなければ開始
             if (!stopTimer.isTimerStart())
