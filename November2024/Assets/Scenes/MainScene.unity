@@ -842,7 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nomalPos: {fileID: 951461748}
-  ShiftMoveSpeed: 100
+  ShiftMoveSpeed: 200
   centerPos: {fileID: 370001152}
   leftPos: {fileID: 244227968}
   rightPos: {fileID: 1787695834}
