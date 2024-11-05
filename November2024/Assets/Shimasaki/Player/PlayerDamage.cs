@@ -178,7 +178,11 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private void FinishInvincible()
     {
+        // 無敵フラグをおろす
         isInvincible = false;
+
+        // ダメージの点滅タイマーをリセット
+        appearanceTimer.ResetTimer();
 
         // 各点滅している見た目をリセットする
         ResetAppearance(playerSpriteRenderer);

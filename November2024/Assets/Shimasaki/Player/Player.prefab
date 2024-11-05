@@ -326,11 +326,13 @@ MonoBehaviour:
   lightPropeller: {fileID: 5729542087209939768}
   playerImage: {fileID: 187930475557019507}
   hitPoint: 5
-  horizontalSpeed: 10
+  lightHorizontalSpeed: 10
+  normalHorizontalSpeed: 8
+  heavyHorizontalSpeed: 6
   nomalFallSpeed: 8
   lightMagnification: 0.7
   heavyMagnification: 1.2
-  invincibleTime: 1
+  invincibleTime: 1.75
   stopLimit: 3
   gameOverWait: 3
   lightImage: {fileID: 21300000, guid: 03e36f03bf3a5d6408f489d8c0d0ce39, type: 3}

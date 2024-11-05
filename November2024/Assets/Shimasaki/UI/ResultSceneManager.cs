@@ -23,7 +23,7 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     private void LoadScene()
     {
-        // タイトルシーンへ
-        SceneManager.LoadScene("TitleScene");
+        // スコアボードシーンへ
+        SceneManager.LoadScene("ScoreBoardScene");
     }
 }
