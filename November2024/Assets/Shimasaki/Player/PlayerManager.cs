@@ -106,18 +106,48 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     }
 
     /// <summary>
-    /// 横移動速度
+    /// 軽い横移動速度
     /// </summary>
     [SerializeField]
-    private float horizontalSpeed;
+    private float lightHorizontalSpeed;
 
     /// <summary>
-    /// 横移動速度取得
+    /// 軽い横移動速度取得
     /// </summary>
-    public float HorizontalSpeed
+    public float LightHorizontalSpeed
     {
-        get => horizontalSpeed;
-        set => horizontalSpeed = value;
+        get => lightHorizontalSpeed;
+        set => lightHorizontalSpeed = value;
+    }
+
+    /// <summary>
+    /// 通常横移動速度
+    /// </summary>
+    [SerializeField]
+    private float normalHorizontalSpeed;
+
+    /// <summary>
+    /// 通常横移動速度取得
+    /// </summary>
+    public float NormalHorizontalSpeed
+    {
+        get => normalHorizontalSpeed;
+        set => normalHorizontalSpeed = value;
+    }
+
+    /// <summary>
+    /// 重い横移動速度
+    /// </summary>
+    [SerializeField]
+    private float heavyHorizontalSpeed;
+
+    /// <summary>
+    /// 重い横移動速度取得
+    /// </summary>
+    public float HeavyHorizontalSpeed
+    {
+        get => heavyHorizontalSpeed;
+        set => heavyHorizontalSpeed = value;
     }
 
     /// <summary>

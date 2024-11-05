@@ -1,3 +1,4 @@
+using PlayerWeight;
 using UnityEngine;
 
 /// <summary>
@@ -40,7 +41,7 @@ public class PlayerHorizontalMove : MonoBehaviour
         // 左右の当たり判定レイ
         RightRay();
         LeftRay();
-  
+
         // 横入力感知
         HorizontalInput();
     }
@@ -75,7 +76,7 @@ public class PlayerHorizontalMove : MonoBehaviour
         var playerPos = transform.position;
 
         // 移動計算
-        playerPos.x += horizontalValue * playerManager.HorizontalSpeed * Time.deltaTime;
+        playerPos.x += horizontalValue * SelectHorizontalSpeed() * Time.deltaTime;
 
         // 反映
         transform.position = playerPos;
@@ -124,7 +125,7 @@ public class PlayerHorizontalMove : MonoBehaviour
         Debug.DrawRay(startPos, Vector2.down * distance, Color.red);
 
         // レイを飛ばして当たったら右壁判定
-        if (Physics2D.Raycast(startPos, Vector2.down, distance,wallLayer))
+        if (Physics2D.Raycast(startPos, Vector2.down, distance, wallLayer))
         {
             if (!playerManager.IsRightWall)
             {
@@ -219,5 +220,37 @@ public class PlayerHorizontalMove : MonoBehaviour
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// 水平方向の移動速度を選定
+    /// </summary>
+    /// <returns>水平移動速度</returns>
+    private float SelectHorizontalSpeed()
+    {
+        float speed = 0.0f;
+
+        switch (playerManager.GetWeight)
+        {
+            case Weight.LIGHT:
+
+                speed = playerManager.LightHorizontalSpeed;
+
+                break;
+
+            case Weight.NORMAL:
+
+                speed = playerManager.NormalHorizontalSpeed;
+
+                break;
+
+            case Weight.HEAVY:
+
+                speed = playerManager.HeavyHorizontalSpeed;
+
+                break;
+        }
+
+        return speed;
     }
 }
