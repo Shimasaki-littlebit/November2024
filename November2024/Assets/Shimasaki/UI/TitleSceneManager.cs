@@ -11,8 +11,19 @@ public class TitleSceneManager : MonoBehaviour
     /// </summary>
     private VerticalUIControl vUIControl;
 
+    /// <summary>
+    /// サウンドマネージャー
+    /// </summary>
+    private SoundPlayManager soundPlayManager;
+
     private void Start()
     {
+        // インスタンス取得
+        soundPlayManager = SoundPlayManager.Instance;
+
+        // タイトルBGM再生
+        soundPlayManager.TitlePlayBGM();
+
         // ボタン移動取得
         vUIControl = GetComponent<VerticalUIControl>();
     }

@@ -62,11 +62,18 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private StageScore stageScore;
 
+    /// <summary>
+    /// サウンドマネージャー
+    /// </summary>
+    private SoundPlayManager soundPlayManager;
+
     // Start is called before the first frame update
     private void Start()
     {
         // プレイヤーマネージャー取得
         playerManager = PlayerManager.Instance;
+        // インスタンス取得
+        soundPlayManager = SoundPlayManager.Instance;
 
         // 体力UI取得
         lifeUI = LifeUI.Instance;
@@ -133,6 +140,9 @@ public class PlayerDamage : MonoBehaviour
 
         // 体力を減らす
         playerManager.HitPoint -= damageValue;
+
+        // 被ダメージの音声再生
+        soundPlayManager.PlaySE(SoundPlayManager.SEKey.SE_DAMAGE);
 
         // 体力表示
         lifeUI.DisplayLife();
