@@ -6,8 +6,23 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class CreditSceneManager : MonoBehaviour
 {
-    // Update is called once per frame
-    private void Update()
+    /// <summary>
+    /// サウンドマネージャー
+    /// </summary>
+    private SoundPlayManager soundPlayManager;
+
+
+    private void Start()
+    {
+        // インスタンス取得
+        soundPlayManager = SoundPlayManager.Instance;
+
+        // タイトルBGM再生
+        soundPlayManager.TitlePlayBGM();
+
+    }
+        // Update is called once per frame
+        private void Update()
     {
         // AボタンorEnterキーorAキー入力でシーン読み込み
         if (Input.GetKeyDown("joystick button 0") || 

@@ -12,6 +12,11 @@ public class VerticalUIControl : MonoBehaviour
     private GameObject[] targetButtons;
 
     /// <summary>
+    /// サウンドマネージャー
+    /// </summary>
+    private SoundPlayManager soundPlayManager;
+
+    /// <summary>
     /// 選択ボタン番号
     /// </summary>
     private int selectNum = 0;
@@ -42,6 +47,9 @@ public class VerticalUIControl : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // インスタンス取得
+        soundPlayManager = SoundPlayManager.Instance;
+
         // タイマー初期化
         stopTimer = new();
 
@@ -84,6 +92,9 @@ public class VerticalUIControl : MonoBehaviour
 
             ++selectNum;
 
+            // 切り替え音声再生
+            soundPlayManager.PlaySE(SoundPlayManager.SEKey.SE_CHOISE);
+
             // 画像更新
             DisplayImage();
 
@@ -100,6 +111,9 @@ public class VerticalUIControl : MonoBehaviour
             if (selectNum <= 0) return;
 
             --selectNum;
+
+            // 切り替え音声再生
+            soundPlayManager.PlaySE(SoundPlayManager.SEKey.SE_CHOISE);
 
             // 画像更新
             DisplayImage();

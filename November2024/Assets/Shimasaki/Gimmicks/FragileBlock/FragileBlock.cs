@@ -78,6 +78,9 @@ public class FragileBlock : MonoBehaviour
             // プレイヤーの重さが重いじゃなければ終了
             if (playerManager.GetWeight != Weight.HEAVY) return;
 
+            // ブロック破壊音を再生
+            SoundPlayManager.Instance.PlaySE(SoundPlayManager.SEKey.SE_BREAK);
+
             Destroy(gameObject);
         }
     }
