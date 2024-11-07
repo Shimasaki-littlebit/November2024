@@ -780,6 +780,10 @@ PrefabInstance:
       propertyPath: gameOverWait
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1325505224559155678, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
+      propertyPath: lightHorizontalSpeed
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4178956077257437303, guid: 270c9662d7630fd499b6a201dd2d3a6d, type: 3}
       propertyPath: m_Name
       value: Player
